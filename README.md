@@ -1,2 +1,2 @@
 # Mecha-ralliareena
-Javalabraprojekti, tavoitteena vuoropohjainen strategiapeli, jonka kontrollit muistuttavat Robo rally -lautapelin mekaniikkaa.
+Javalabraprojekti, tavoitteena on luoda vuoropohjainen strategiapeli, jonka kontrollit muistuttavat Robo Rally -lautapelin mekaniikkaa.
