@@ -1,7 +1,7 @@
 
 package lautakortti.mecharalli;
 
-import kayttoliittyma.Kayttoliittyma;
+import lautakortti.kayttoliittyma.Kayttoliittyma;
 
 //Tämä ohjelma ei tee muuta kuin käynnistää käyttöliittymän.
 

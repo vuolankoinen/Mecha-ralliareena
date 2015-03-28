@@ -1,6 +1,6 @@
-package pelimekaniikka;
+package lautakortti.pelimekaniikka;
 
-import pelitapahtumien_grafiikka.Kuvastuva;
+import lautakortti.pelitapahtumien_grafiikka.Kuvastuva;
 
 public class LiikkumatonEste implements Kuvastuva {
 

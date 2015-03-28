@@ -1,6 +1,6 @@
-package pelimekaniikka;
+package lautakortti.pelimekaniikka;
 
-import pelitapahtumien_grafiikka.*;
+import lautakortti.pelitapahtumien_grafiikka.Kuvastuva;
 
 public class Nappula implements Liikkuva, Kuvastuva {
     private int x;

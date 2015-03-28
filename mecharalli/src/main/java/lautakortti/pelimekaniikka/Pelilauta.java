@@ -1,4 +1,4 @@
-package pelimekaniikka;
+package lautakortti.pelimekaniikka;
 
 public interface Pelilauta {
 

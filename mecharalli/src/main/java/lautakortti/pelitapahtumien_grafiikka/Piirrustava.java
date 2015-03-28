@@ -1,4 +1,4 @@
-package pelitapahtumien_grafiikka;
+package lautakortti.pelitapahtumien_grafiikka;
 
 import java.util.List;
 

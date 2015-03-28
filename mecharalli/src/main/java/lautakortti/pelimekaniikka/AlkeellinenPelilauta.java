@@ -1,7 +1,7 @@
-package pelimekaniikka;
+package lautakortti.pelimekaniikka;
 
-import pelitapahtumien_grafiikka.Piirrustava;
-import pelitapahtumien_grafiikka.Kuvastuva;
+import lautakortti.pelitapahtumien_grafiikka.Piirrustava;
+import lautakortti.pelitapahtumien_grafiikka.Kuvastuva;
 import java.util.ArrayList;
 
 public class AlkeellinenPelilauta implements Pelilauta {

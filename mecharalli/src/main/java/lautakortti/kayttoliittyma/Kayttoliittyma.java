@@ -1,9 +1,9 @@
-package kayttoliittyma;
+package lautakortti.kayttoliittyma;
 
 import java.util.Scanner;
-import pelimekaniikka.AlkeellinenPelilauta;
-import pelimekaniikka.Pelilauta;
-import pelitapahtumien_grafiikka.Tekstiesitys;
+import lautakortti.pelimekaniikka.AlkeellinenPelilauta;
+import lautakortti.pelimekaniikka.Pelilauta;
+import lautakortti.pelitapahtumien_grafiikka.Tekstiesitys;
 
 public class Kayttoliittyma {
 
