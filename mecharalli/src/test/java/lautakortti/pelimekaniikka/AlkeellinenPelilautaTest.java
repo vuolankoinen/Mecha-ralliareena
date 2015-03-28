@@ -1,6 +1,6 @@
 package lautakortti.pelimekaniikka;
 
-import lautakortti.pelitapahtumien_grafiikka.Tekstiesitys;
+import lautakortti.pelitapahtumienGrafiikka.Tekstiesitys;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +24,6 @@ public class AlkeellinenPelilautaTest {
 
     @Before
     public void setUp() {
-        AlkeellinenPelilauta lauta = new AlkeellinenPelilauta(1, new Tekstiesitys);
     }
 
     @After
@@ -33,11 +32,13 @@ public class AlkeellinenPelilautaTest {
 
     @Test
     public void lautaTekeeSiirrot() {
+        AlkeellinenPelilauta lauta = new AlkeellinenPelilauta(1, new Tekstiesitys());
         lauta.teeSiirrot();
     }
-    
+
     @Test
     public void lautaTunnistaaVoittoehdot() {
-        assertEquals(false,lauta.voittikoPelaaja());
+        AlkeellinenPelilauta lauta = new AlkeellinenPelilauta(1, new Tekstiesitys());
+        assertEquals(false, lauta.voittikoPelaaja());
     }
 }

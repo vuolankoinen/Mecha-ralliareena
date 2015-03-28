@@ -1,4 +1,4 @@
-package lautakortti.pelitapahtumien_grafiikka;
+package lautakortti.pelitapahtumienGrafiikka;
 
 public interface Kuvastuva {
     //Tämän rajapinnan täyttävät oliot piirtyvät pelilaudalle. 

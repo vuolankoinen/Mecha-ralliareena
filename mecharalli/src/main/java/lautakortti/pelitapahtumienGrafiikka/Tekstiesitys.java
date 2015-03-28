@@ -1,4 +1,4 @@
-package lautakortti.pelitapahtumien_grafiikka;
+package lautakortti.pelitapahtumienGrafiikka;
 
 import java.util.List;
 
@@ -12,11 +12,13 @@ public class Tekstiesitys implements Piirrustava {
         System.out.println("\n");
     }
 
-    private String etsiNimi(int etsittava) {
+    protected String etsiNimi(int etsittava) {
         if (etsittava == 1) {
             return "Pelaajanappula";
         } else if (etsittava == 6) {
             return "Kivi";
+        } else if (etsittava == 3) {
+            return "Vastustajan mecha";
         } else {
             return "Tuntematon";
         }

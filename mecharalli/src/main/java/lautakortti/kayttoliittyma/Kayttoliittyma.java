@@ -3,7 +3,7 @@ package lautakortti.kayttoliittyma;
 import java.util.Scanner;
 import lautakortti.pelimekaniikka.AlkeellinenPelilauta;
 import lautakortti.pelimekaniikka.Pelilauta;
-import lautakortti.pelitapahtumien_grafiikka.Tekstiesitys;
+import lautakortti.pelitapahtumienGrafiikka.Tekstiesitys;
 
 public class Kayttoliittyma {
 
