@@ -27,11 +27,20 @@ public class SatunnaisestiLiikkuvaVastustaja implements Kuvastuva, Liikkuva {
     public int mikaKuva() {
         return 3;
     }
-
+/**
+ * Arpoo seuraavan siirron nappulalle.
+ * 
+ * @return Seuraavaa satunnaista siirtoa vastaava luku. 
+ */
     public int kerroSeuraavaSiirto() {
         return this.arpa.nextInt(8) + 1;
     }
-
+/**
+ * Liikuttaa nappulaa laudalla.
+ * 
+ * @param pystysuoraMuutosSijainnissa Paljonko liikutetaan pystysuunnassa.
+ * @param vaakasuoraMuutosSijainnissa Paljonko liikutetaan vaakasuunnassa.
+ */
     public void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa) {
         if (true) {      //Tähän testi siirron laillisuudesta!
             this.x += vaakasuoraMuutosSijainnissa;

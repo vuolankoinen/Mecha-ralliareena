@@ -10,4 +10,6 @@ public interface Pelilauta {
     abstract void teeSiirrot();
     
     abstract void piirra();
+    
+    abstract void asetaSiirto(String siirto);  
 }

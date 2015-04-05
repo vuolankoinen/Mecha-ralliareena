@@ -13,6 +13,9 @@ public class Kayttoliittyma {
         this.lukija = new Scanner(System.in);
     }
 
+    /**
+     * Tämä on pelin pääsilmukka.
+     */
     public void kaynnista() {
         System.out.println("Tervetuloa pelaamaan Mecharallia!");
         while (true) {
@@ -30,10 +33,16 @@ public class Kayttoliittyma {
                 System.out.println("Epäselvä käsky, ohjelma sulkeutuu.");
                 return;
             }
-            pelaa(alustaLauta(arvo));
+            pelaa(alustaLauta(arvo));   //Luodaan lauta ja pelataan se.
         }
     }
 
+    /**
+     * Yksittäisen pelilaudan silmukka. Lautaa pelataan, kunnes pelitilanteen
+     * lopetusehto täyttyy (peli on hävitty tai voitettu).
+     *
+     * @param lauta Pelattava pelilauta.
+     */
     public void pelaa(Pelilauta lauta) { //Käynnistää pelin annetulla pelilaudalla.
         String komento = "";
         while (true) {
@@ -42,6 +51,8 @@ public class Kayttoliittyma {
             komento = lukija.nextLine();
             if (komento.equals("X")) {
                 break;
+            } else {
+                lauta.asetaSiirto(komento);
             }
             lauta.teeSiirrot();
             if (lauta.voittikoPelaaja()) {
@@ -51,6 +62,13 @@ public class Kayttoliittyma {
         }
     }
 
+    /**
+     * Luo uuden pelilaudan.
+     *
+     * @param laji Parametri kertoo, minkälainen lauta luodaan.
+     * 1=4x4-alkeellinenPelilauta
+     * @return
+     */
     public Pelilauta alustaLauta(int laji) { //Luo pyydetynlaisen pelilaudan.
         Tekstiesitys esitys = new Tekstiesitys();
         return new AlkeellinenPelilauta(laji, esitys);
