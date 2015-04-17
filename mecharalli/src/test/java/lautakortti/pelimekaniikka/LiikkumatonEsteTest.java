@@ -31,6 +31,6 @@ public class LiikkumatonEsteTest {
      @Test
      public void turvallinenEste() {
      LiikkumatonEste este = new LiikkumatonEste(1,1);
-     assertEquals(false,este.vahingoittaako());
+     assertEquals(false,este.vahingoittaakoKolaroidessa(1));
      }
 }

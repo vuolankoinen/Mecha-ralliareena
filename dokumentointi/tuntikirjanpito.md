@@ -5,3 +5,8 @@
 		jotenkin pyörimään. Hmm.
 	3t	Lisää säätämistä, hieman koodia.
 3.4.	3t	Hieman koodia ja korjailua. JavaDocin aloittelua.
+9.4.	3t	JavaDocia...
+10.4.	2t	...ja nappuloiden siirtojen toteuttamista.
+15.4.	1t	Graafisen käyttöliittymän aloittelua.
+17.4.	4t	Uusia ja parempia testejä.
+		Pelaajavuorovaikutusta haluttuun suuntaan korvaavalla pelinappulaluokalla.

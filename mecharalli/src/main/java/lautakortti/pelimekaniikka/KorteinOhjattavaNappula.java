@@ -1,26 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lautakortti.pelimekaniikka;
 
 import java.util.ArrayList;
 
-public class Nappula implements Liikkuva {
+/**
+ *
+ * @author user
+ */
+public class KorteinOhjattavaNappula implements Liikkuva {
 
     private int x;
     private int y;
     private ArrayList<Integer> seuraavaSiirto;
+    private ArrayList<Integer> kaikkiTarjollaOlevatSiirrot;
+    private ArrayList<Integer> konkreettinenSiirtopakka;
     private int hiparit;
 
-    Nappula(int alkusijaintiX, int alkusijaintiY, int alkuHP) {
+    KorteinOhjattavaNappula(int alkusijaintiX, int alkusijaintiY, int alkuHP) {
         this.x = alkusijaintiX;
         this.y = alkusijaintiY;
         this.hiparit = alkuHP;
         this.seuraavaSiirto = new ArrayList<Integer>();
+        this.kaikkiTarjollaOlevatSiirrot = new ArrayList<Integer>();
+        for (int i=1;i<5;i++){
+            for (int u = 0;u<4;u++){
+                this.kaikkiTarjollaOlevatSiirrot.add(i);
+            }
+        }
+        this.konkreettinenSiirtopakka = this.kaikkiTarjollaOlevatSiirrot;
+        //this.konkreettinenSiirtopakka.randomize();
     }
 
-    Nappula(int alkusijaintiX, int alkusijaintiY) {
+    KorteinOhjattavaNappula(int alkusijaintiX, int alkusijaintiY) {
         this(alkusijaintiX, alkusijaintiY, 4);
     }
 
-    Nappula() {
+    KorteinOhjattavaNappula() {
         this(1, 1, 4);
     }
 
@@ -93,6 +112,18 @@ public class Nappula implements Liikkuva {
             return true;
         }
         return false;
+    }
+    
+    public ArrayList<Integer> seuraavatViisiVaihtoehtoa(){
+        ArrayList<Integer> seuraavat = new ArrayList<Integer>();
+        for (int i=0;i<5;i++){
+            if (this.konkreettinenSiirtopakka.size()<i+1){
+                seuraavat.add(0);
+                continue;
+            }
+            seuraavat.add(this.konkreettinenSiirtopakka.get(i));
+        }
+        return seuraavat;
     }
 
 }

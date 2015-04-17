@@ -56,7 +56,11 @@ public class Kayttoliittyma {
             }
             lauta.teeSiirrot();
             if (lauta.voittikoPelaaja()) {
-                System.out.println("Onneksi olkoon, voitit.");
+                System.out.println("Onneksi olkoon, voitit.\n");
+                return;
+            }
+            if (lauta.tuhoutuikoPelaaja()) {
+                System.out.println("Voi sentään, hävisit.\n");
                 return;
             }
         }

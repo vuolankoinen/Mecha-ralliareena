@@ -9,5 +9,8 @@ public interface Kuvastuva {
     abstract int sijaintiPystysuunnassa();
     
     abstract int mikaKuva();
+    
+    abstract boolean vahingoittaakoKolaroidessa(int kolaroinninRajuus);
 
+    abstract boolean onkoRikki();
 }

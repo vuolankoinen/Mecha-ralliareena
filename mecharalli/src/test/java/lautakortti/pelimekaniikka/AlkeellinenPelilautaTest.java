@@ -45,17 +45,17 @@ public class AlkeellinenPelilautaTest {
         @Test
     public void lautaTunnistaaVoittoehdot2() {
         AlkeellinenPelilauta lauta = new AlkeellinenPelilauta(1, new Tekstiesitys());
-        lauta.asetaSiirto("w");
-        lauta.teeSiirrot();
-        lauta.asetaSiirto("w");
-        lauta.teeSiirrot();
-        lauta.asetaSiirto("w");
-        lauta.teeSiirrot();
         lauta.asetaSiirto("s");
         lauta.teeSiirrot();
         lauta.asetaSiirto("s");
         lauta.teeSiirrot();
         lauta.asetaSiirto("s");
+        lauta.teeSiirrot();
+        lauta.asetaSiirto("w");
+        lauta.teeSiirrot();
+        lauta.asetaSiirto("w");
+        lauta.teeSiirrot();
+        lauta.asetaSiirto("w");
         lauta.teeSiirrot();
         assertEquals(true, lauta.voittikoPelaaja());
     }

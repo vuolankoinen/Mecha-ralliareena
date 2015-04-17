@@ -7,6 +7,8 @@ public interface Pelilauta {
     
     abstract boolean voittikoPelaaja();
     
+    abstract boolean tuhoutuikoPelaaja();
+    
     abstract void teeSiirrot();
     
     abstract void piirra();

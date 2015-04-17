@@ -26,6 +26,8 @@ public class Tekstiesitys implements Piirrustava {
             return "Kivi";
         } else if (etsittava == 3) {
             return "Vastustajan mecha";
+        } else if (etsittava == 7) {
+            return "Puulaatikko";
         } else {
             return "Tuntematon";
         }

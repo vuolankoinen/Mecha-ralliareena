@@ -35,8 +35,16 @@ public class LiikkumatonEste implements Kuvastuva {
         return this.kuva;
     }
     
-    public boolean vahingoittaako(){
+    public boolean vahingoittaakoKolaroidessa(int ei){
         return this.vahingoittaaKolaroidessa;
     }
+    
+    public boolean onkoRikki(){
+//        if (this.hiparit<1){
+//            return true;
+//        }
+        return false;
+    }
+    
 
 }
