@@ -10,3 +10,5 @@
 15.4.	1t	Graafisen käyttöliittymän aloittelua.
 17.4.	4t	Uusia ja parempia testejä.
 		Pelaajavuorovaikutusta haluttuun suuntaan korvaavalla pelinappulaluokalla.
+22.4.	4t	Grafiikan kanssa sähläämistä.
+24.4.	7t	Käyttöliittymän ja grafiikan kanssa puuhastelua.

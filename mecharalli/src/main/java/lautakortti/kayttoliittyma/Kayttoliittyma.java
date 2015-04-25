@@ -1,8 +1,9 @@
 package lautakortti.kayttoliittyma;
 
 import java.util.Scanner;
-import lautakortti.pelimekaniikka.AlkeellinenPelilauta;
+import lautakortti.pelimekaniikka.Esterata;
 import lautakortti.pelimekaniikka.Pelilauta;
+import lautakortti.pelitapahtumienGrafiikka.Kuvaesitys;
 import lautakortti.pelitapahtumienGrafiikka.Tekstiesitys;
 
 public class Kayttoliittyma {
@@ -21,6 +22,7 @@ public class Kayttoliittyma {
         while (true) {
             System.out.println("Valitse pelattava kenttä:");
             System.out.println("1: pikajuoksurata");
+            System.out.println("2: pikajuoksurata grafiikoilla");
             System.out.println("0: lopeta peli");
             String kasky = lukija.nextLine();
             int arvo = 240;
@@ -28,6 +30,8 @@ public class Kayttoliittyma {
                 return;
             } else if (kasky.equals("1")) {
                 arvo = 1;
+            } else if (kasky.equals("2")) {
+                arvo = 2;
             }
             if (arvo == 240) {   //Jos arvo ei muuttunut, ei saatu kunnon käskyä.
                 System.out.println("Epäselvä käsky, ohjelma sulkeutuu.");
@@ -74,8 +78,11 @@ public class Kayttoliittyma {
      * @return
      */
     public Pelilauta alustaLauta(int laji) { //Luo pyydetynlaisen pelilaudan.
-        Tekstiesitys esitys = new Tekstiesitys();
-        return new AlkeellinenPelilauta(laji, esitys);
+        if (laji == 1) {
+            return new Esterata(laji, new Tekstiesitys());
+        } else {
+            return new Esterata(1, new Kuvaesitys());
+        }
 
     }
 }

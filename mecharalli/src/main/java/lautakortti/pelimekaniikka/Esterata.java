@@ -4,7 +4,7 @@ import lautakortti.pelitapahtumienGrafiikka.Piirrustava;
 import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
 import java.util.ArrayList;
 
-public class AlkeellinenPelilauta implements Pelilauta {
+public class Esterata implements Pelilauta {
 
     private Piirrustava piirrin;
     private int leveys;
@@ -15,7 +15,7 @@ public class AlkeellinenPelilauta implements Pelilauta {
     private int maaliX;
     private int maaliY;
 
-    public AlkeellinenPelilauta(int tyyppi, Piirrustava piirrin) {
+    public Esterata(int tyyppi, Piirrustava piirrin) {
         this.piirrin = piirrin;
         if (tyyppi == 1) {      //Erilaisia lautoja voi lisätä eri parametreille.
             this.leveys = 4;
@@ -36,7 +36,7 @@ public class AlkeellinenPelilauta implements Pelilauta {
         this.pelaaja = pelaajanappula;
     }
 
-    public AlkeellinenPelilauta(Piirrustava piirrin) {
+    public Esterata(Piirrustava piirrin) {
         this(1, piirrin);
     }
 
@@ -46,8 +46,8 @@ public class AlkeellinenPelilauta implements Pelilauta {
 
     /**
      * Käy läpi kaikki laudan liikkuvat elementit, joilta pyytää niiden
-     * seuraavan siirron, jonka sitten toteuttaa.
-     * Siirtojen jälkeen poistetaan laudalta kolarien rikkomat oliot.
+     * seuraavan siirron, jonka sitten toteuttaa. Siirtojen jälkeen poistetaan
+     * laudalta kolarien rikkomat oliot.
      */
     public void teeSiirrot() {
         for (Liikkuva mecha : this.laudanLiikkuvatOliot) {
@@ -57,8 +57,9 @@ public class AlkeellinenPelilauta implements Pelilauta {
                 continue;
             }    //jne: Tähän myöhemmin toteutettavat muut siirrot.
         }
-        ArrayList<Kuvastuva> kopio = this.laudanOliot;
-        for (Kuvastuva tarkistettava:kopio){
+        ArrayList<Kuvastuva> kopio = new ArrayList<Kuvastuva>();
+        kopio.addAll(this.laudanOliot);
+        for (Kuvastuva tarkistettava : kopio) {
             this.poistaRikkoutunut(tarkistettava);
         }
     }
@@ -68,7 +69,7 @@ public class AlkeellinenPelilauta implements Pelilauta {
      * liikkeet pysty- ja vaakasuunnassa.
      *
      * @param mecha Siirrettävä elementti, toteuttaa rajapinnan Liikkuva.
-     * @param siirto Tehtävän siirron int-numerokoodi.
+     * @param siirto Suoritettavan siirron int-numerokoodi.
      */
     public void perussiirto(Liikkuva mecha, int siirto) {
         if (siirto == 1) {           //Ylös
@@ -125,8 +126,8 @@ public class AlkeellinenPelilauta implements Pelilauta {
      * @param liikkuva Törmäyksen aikaansaattaja, Kuvastuva olio.
      * @param uhri Kolarin liikkumaton osapuoli, Kuvastuva olio.
      */
-    private void kolaroi(Kuvastuva liikkuva, Kuvastuva uhri) {
-        if (uhri==null){    //En tajua, mistä tämä null-pointeri tulee. :(
+    public void kolaroi(Kuvastuva liikkuva, Kuvastuva uhri) {
+        if (uhri == null) {    //En tajua, mistä tämä null-pointeri tulee. :(
             return;         //Pitää selvittää, niin pääsee tästä hätäratkaisusta.
         }
         uhri.toString();
@@ -135,14 +136,16 @@ public class AlkeellinenPelilauta implements Pelilauta {
             liikkuva.vahingoittaakoKolaroidessa(1);
         }
     }
-    
+
     /**
-     * Tarkistaa, ovatko olion kestopisteet loppuneet, ja poistaa sen laudalta jos on.
+     * Tarkistaa, ovatko olion kestopisteet loppuneet, ja poistaa sen laudalta
+     * jos on.
+     *
      * @param rikottu Mahdollisesti poistettava Kuvastuva laudan olio.
-     * @return  Palauttaa "true", jos olio poistettiin, muuten "false".
+     * @return Palauttaa "true", jos olio poistettiin, muuten "false".
      */
-    public boolean poistaRikkoutunut(Kuvastuva rikottu){
-        if (!rikottu.onkoRikki()){
+    public boolean poistaRikkoutunut(Kuvastuva rikottu) {
+        if (!rikottu.onkoRikki()) {
             return false;
         }
         this.laudanLiikkuvatOliot.remove(rikottu);

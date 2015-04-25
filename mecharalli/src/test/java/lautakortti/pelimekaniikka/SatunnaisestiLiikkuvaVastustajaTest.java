@@ -19,6 +19,13 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
     }
 
     @Test
+    public void liikkuuVasemmalle() {
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(5, 5);
+        vastus.liiku(-3, -2);
+        assertEquals(3, vastus.sijaintiSivusuunnassa());
+    }
+
+    @Test
     public void meneeRikki() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 1);
         vastus.vahingoittaakoKolaroidessa(8);
@@ -44,7 +51,7 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
         assertEquals(true, tulisiPoiketaNollasta != 0);
     }
 
-        @Test
+    @Test
     public void siirrotOvatSatunnaisia2() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 1);
         int eiSaisiPoiketaLiikaaNollasta = 0;
@@ -54,6 +61,34 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
         }
         eiSaisiPoiketaLiikaaNollasta = Math.max(eiSaisiPoiketaLiikaaNollasta, -eiSaisiPoiketaLiikaaNollasta);
         assertEquals(true, eiSaisiPoiketaLiikaaNollasta < 12);
+    }
+
+    @Test
+    public void eiLiikuAlareunanYli() {
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
+        vastus.liiku(-3, -1);
+        assertEquals(2, vastus.sijaintiPystysuunnassa());
+    }
+
+    @Test
+    public void eiLiikuOikeanReunanYli() {
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
+        vastus.liiku(0, 7);
+        assertEquals(2, vastus.sijaintiSivusuunnassa());
+    }
+
+    @Test
+    public void eiHajoaEnnenAikojaan() {
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
+        vastus.vahingoittaakoKolaroidessa(1);
+        vastus.vahingoittaakoKolaroidessa(1);
+        assertEquals(false, vastus.onkoRikki());
+    }
+
+    @Test
+    public void vahingoittaa() {
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
+        assertEquals(true, vastus.vahingoittaakoKolaroidessa(1));
     }
 
 }

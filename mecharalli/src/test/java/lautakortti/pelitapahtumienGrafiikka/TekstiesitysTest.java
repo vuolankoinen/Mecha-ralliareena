@@ -1,6 +1,6 @@
 package lautakortti.pelitapahtumienGrafiikka;
 
-import lautakortti.pelimekaniikka.AlkeellinenPelilauta;
+import lautakortti.pelimekaniikka.Esterata;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

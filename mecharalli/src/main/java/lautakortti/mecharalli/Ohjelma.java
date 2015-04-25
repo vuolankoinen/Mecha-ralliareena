@@ -1,16 +1,17 @@
-
 package lautakortti.mecharalli;
 
-import lautakortti.kayttoliittyma.Kayttoliittyma;
+import javax.swing.SwingUtilities;
+import lautakortti.kayttoliittyma.*;
 
 //Tämä ohjelma ei tee muuta kuin käynnistää käyttöliittymän.
-
 public class Ohjelma {
 
     public static void main(String[] args) {
 
-        Kayttoliittyma kayttis = new Kayttoliittyma(); 
-        kayttis.kaynnista();
-        
+//        Kayttoliittyma kayttis = new Kayttoliittyma();    //tekstipohjainen koeversio
+//        kayttis.kaynnista();
+
+        GraafinenKayttoliittyma kayttis = new GraafinenKayttoliittyma();
+        SwingUtilities.invokeLater(kayttis);
     }
 }

@@ -35,7 +35,7 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
      * @return Seuraavaa satunnaista siirtoa vastaava luku.
      */
     public int kerroSeuraavaSiirto() {
-        return this.arpa.nextInt(8) + 1;
+        return this.arpa.nextInt(4) + 1;
     }
 
     /**
@@ -45,10 +45,10 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
      * @param vaakasuoraMuutosSijainnissa Paljonko liikutetaan vaakasuunnassa.
      */
     public void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa) {
-        if (true) {      //Tähän testi siirron laillisuudesta!
+        if ((this.x + vaakasuoraMuutosSijainnissa) < 6 && 0 < (this.x + vaakasuoraMuutosSijainnissa)) {
             this.x += vaakasuoraMuutosSijainnissa;
         }
-        if (true) {     //Samoin tähän.
+        if ((this.y + pystysuoraMuutosSijainnissa)<6 && (this.y + pystysuoraMuutosSijainnissa)>0) {     //Samoin tähän.
             this.y += pystysuoraMuutosSijainnissa;
         }
     }
@@ -65,8 +65,8 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
         return true;
     }
 
-    public boolean onkoRikki(){
-        if (this.hiparit<1){
+    public boolean onkoRikki() {
+        if (this.hiparit < 1) {
             return true;
         }
         return false;
