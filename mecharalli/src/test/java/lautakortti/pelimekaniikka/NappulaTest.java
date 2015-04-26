@@ -41,29 +41,35 @@ public class NappulaTest {
     @Test
     public void liikkuuYhdenYlos() {
         Nappula nappula = new Nappula(1, 1);
-        nappula.liiku(1, 0);
+        nappula.liiku(1, 0,5,5);
         assertEquals(2, nappula.sijaintiPystysuunnassa());
     }
 
     @Test
     public void liikkuuYhdenAlas() {
-        Nappula nappula = new Nappula(1, 1);
-        nappula.liiku(-1, 0);
-        assertEquals(0, nappula.sijaintiPystysuunnassa());
+        Nappula nappula = new Nappula(2, 2);
+        nappula.liiku(-1, 0,3,3);
+        assertEquals(1, nappula.sijaintiPystysuunnassa());
     }
 
     @Test
     public void liikkuuYhdenVasemmalle() {
         Nappula nappula = new Nappula(1, 1);
-        nappula.liiku(0, 1);
+        nappula.liiku(0, 1,4,4);
         assertEquals(2, nappula.sijaintiSivusuunnassa());
     }
 
     @Test
     public void liikkuuYhdenOikealle() {
+        Nappula nappula = new Nappula(2, 2);
+        nappula.liiku(0, -1,4,4);
+        assertEquals(1, nappula.sijaintiSivusuunnassa());
+    }
+    @Test
+    public void eiLiikuReunanYli() {
         Nappula nappula = new Nappula(1, 1);
-        nappula.liiku(0, -1);
-        assertEquals(0, nappula.sijaintiSivusuunnassa());
+        nappula.liiku(-1, -1,4,4);
+        assertEquals(1, nappula.sijaintiSivusuunnassa()*nappula.sijaintiPystysuunnassa());
     }
 
     @Test

@@ -14,14 +14,14 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
     @Test
     public void liikkuuAlas() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(5, 5);
-        vastus.liiku(-3, -2);
+        vastus.liiku(-3, -2,8,8);
         assertEquals(2, vastus.sijaintiPystysuunnassa());
     }
 
     @Test
     public void liikkuuVasemmalle() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(5, 5);
-        vastus.liiku(-3, -2);
+        vastus.liiku(-3, -2,8,8);
         assertEquals(3, vastus.sijaintiSivusuunnassa());
     }
 
@@ -66,14 +66,14 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
     @Test
     public void eiLiikuAlareunanYli() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
-        vastus.liiku(-3, -1);
+        vastus.liiku(-3, -1,5,5);
         assertEquals(2, vastus.sijaintiPystysuunnassa());
     }
 
     @Test
     public void eiLiikuOikeanReunanYli() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(2, 2);
-        vastus.liiku(0, 7);
+        vastus.liiku(0, 7,5,5);
         assertEquals(2, vastus.sijaintiSivusuunnassa());
     }
 

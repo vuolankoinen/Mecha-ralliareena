@@ -77,27 +77,27 @@ public class Esterata implements Pelilauta {
                 this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
                 return;
             }
-            mecha.liiku(1, 0);
+            mecha.liiku(1, 0, this.korkeus+1, this.leveys+1);
 
         } else if (siirto == 2) {    //Oikealle
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa() + 1, mecha.sijaintiPystysuunnassa()) != null) {
                 this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
                 return;
             }
-            mecha.liiku(0, 1);
+            mecha.liiku(0, 1, this.korkeus+1, this.leveys+1);
 
         } else if (siirto == 3) {    //Alas
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() - 1) != null) {
                 this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
                 return;
             }
-            mecha.liiku(-1, 0);
+            mecha.liiku(-1, 0, this.korkeus+1, this.leveys+1);
         } else if (siirto == 4) {    //Vasemmalle
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa() - 1, mecha.sijaintiPystysuunnassa()) != null) {
                 this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
                 return;
             }
-            mecha.liiku(0, -1);
+            mecha.liiku(0, -1, this.korkeus+1, this.leveys+1);
 
         }
     }

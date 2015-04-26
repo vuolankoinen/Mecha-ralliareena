@@ -29,7 +29,7 @@ public class Nappula implements Liikkuva {
      * @return Nappulan seuraavaa siirtoa vastaava kokonaisluku.
      */
     public int kerroSeuraavaSiirto() {
-        if (this.seuraavaSiirto.size()==0){
+        if (this.seuraavaSiirto.size() == 0) {
             return 0;
         }
         int siirto = this.seuraavaSiirto.get(0);
@@ -67,17 +67,19 @@ public class Nappula implements Liikkuva {
     }
 
     /**
-     * Metodi muuttaa nappulan sijaintia laudalla
+     * Metodi muuttaa nappulan sijaintia laudalla, ei siirrä reunojen yli.
      *
      * @param y Kuinka paljon liikutettavan nappulan pystysijainti muuttuu
      * @param x Kuinka paljon liikutettavan nappulan sivusijainti muuttuu
+     * @param maxY Laudan yläreuna
+     * @param maxX Laudan oikea reuna
      */
-    public void liiku(int y, int x) {
-        if (true) {   //Tässä testataan, onko siirto laillinen! XX
+    public void liiku(int y, int x, int maxY, int maxX) {
+        if ((this.x+x)<maxX&&(this.x+x)>0) {   //Meneekö reunan yli?
             this.x += x;
         }
 
-        if (true) {   //Tässä testataan, onko siirto laillinen! XX
+        if ((this.y+y)<maxY&&(this.y+y)>0) {   //Meneekö reunan yli?
             this.y += y;
         }
     }
@@ -87,9 +89,9 @@ public class Nappula implements Liikkuva {
         this.hiparit -= paljon;     //Kolaroidessa nappula vahingoittuu.
         return true;                //Samoin kolaroija.
     }
-    
-    public boolean onkoRikki(){
-        if (this.hiparit<1){
+
+    public boolean onkoRikki() {
+        if (this.hiparit < 1) {
             return true;
         }
         return false;

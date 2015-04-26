@@ -39,16 +39,18 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
     }
 
     /**
-     * Liikuttaa nappulaa laudalla.
+     * Liikuttaa nappulaa laudalla, ei mene reunojen yli.
      *
      * @param pystysuoraMuutosSijainnissa Paljonko liikutetaan pystysuunnassa.
      * @param vaakasuoraMuutosSijainnissa Paljonko liikutetaan vaakasuunnassa.
+     * @param maxX Laudan oikea reuna.
+     * @param maxY Yläreuna.
      */
-    public void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa) {
-        if ((this.x + vaakasuoraMuutosSijainnissa) < 6 && 0 < (this.x + vaakasuoraMuutosSijainnissa)) {
+    public void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa, int maxY, int maxX) {
+        if ((this.x + vaakasuoraMuutosSijainnissa) < maxX && 0 < (this.x + vaakasuoraMuutosSijainnissa)) {
             this.x += vaakasuoraMuutosSijainnissa;
         }
-        if ((this.y + pystysuoraMuutosSijainnissa)<6 && (this.y + pystysuoraMuutosSijainnissa)>0) {     //Samoin tähän.
+        if ((this.y + pystysuoraMuutosSijainnissa)< maxY && (this.y + pystysuoraMuutosSijainnissa)>0) {     //Samoin tähän.
             this.y += pystysuoraMuutosSijainnissa;
         }
     }

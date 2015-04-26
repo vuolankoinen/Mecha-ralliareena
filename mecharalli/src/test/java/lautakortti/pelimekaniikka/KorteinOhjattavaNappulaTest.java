@@ -41,29 +41,36 @@ public class KorteinOhjattavaNappulaTest {
     @Test
     public void liikkuuYhdenYlos() {
         KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(1, 1);
-        nappula.liiku(1, 0);
+        nappula.liiku(1, 0,5,5);
         assertEquals(2,nappula.sijaintiPystysuunnassa());
     }
     
         @Test
-    public void liikkuuYhdenAlas() {
+    public void liikkuuYhdenYlosJaYhdenOikealle() {
         KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(1, 1);
-        nappula.liiku(-1, 0);
-        assertEquals(0, nappula.sijaintiPystysuunnassa());
+        nappula.liiku(1, 1,5,5);
+        assertEquals(4, nappula.sijaintiPystysuunnassa()+nappula.sijaintiSivusuunnassa());
     }
 
     @Test
     public void liikkuuYhdenVasemmalle() {
-        KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(1, 1);
-        nappula.liiku(0, 1);
-        assertEquals(2, nappula.sijaintiSivusuunnassa());
+        KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(2, 2);
+        nappula.liiku(0, -1,4,4);
+        assertEquals(1, nappula.sijaintiSivusuunnassa());
     }
 
     @Test
-    public void liikkuuYhdenOikealle() {
+    public void liikkuuKaksiVasemmalle() {
+        KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(3, 3);
+        nappula.liiku(0, -2,4,4);
+        assertEquals(1, nappula.sijaintiSivusuunnassa());
+    }
+    
+    @Test
+    public void eiLiikuReunanYli() {
         KorteinOhjattavaNappula nappula = new KorteinOhjattavaNappula(1, 1);
-        nappula.liiku(0, -1);
-        assertEquals(0, nappula.sijaintiSivusuunnassa());
+        nappula.liiku(-1, -2,4,4);
+        assertEquals(1, nappula.sijaintiSivusuunnassa()*nappula.sijaintiPystysuunnassa());
     }
 
     @Test

@@ -8,7 +8,7 @@ public interface Liikkuva extends Kuvastuva {
     abstract int kerroSeuraavaSiirto();
 
 //Niiden sijaintia voi myös muuttaa metodikutsulla.
-    abstract void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa);
+    abstract void liiku(int pystysuoraMuutosSijainnissa, int vaakasuoraMuutosSijainnissa, int ylareuna, int alareuna);
 }
 
 //Lisäksi kuvastuvina nämä oliot osaavat kertoa, missä ovat, miltä näyttävät, 

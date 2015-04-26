@@ -31,9 +31,13 @@ public class EsterataTest {
     }
 
     @Test
-    public void lautaTekeeSiirrot() {
+    public void eiSiirraYliReunan() {
         Esterata lauta = new Esterata(1, new Tekstiesitys());
+        lauta.asetaSiirto("z");
         lauta.teeSiirrot();
+        lauta.asetaSiirto("a");
+        lauta.teeSiirrot();
+        assertEquals(false, lauta.tarkistaKolarointi(1, 1).equals(null));
     }
 
     @Test
@@ -81,29 +85,30 @@ public class EsterataTest {
     @Test
     public void pelaajaHaviaaLiikaaKolaroituaan() {
         Esterata lauta = new Esterata(1, new Tekstiesitys());
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(1, 1));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(1, 1));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(1, 1));
-        assertEquals(true, lauta.tuhoutuikoPelaaja());
-    }
-    @Test
-    public void pelaajaHaviaaKolaroituaanEsteeseenToistuvasti() {
-        Esterata lauta = new Esterata(1, new Tekstiesitys());
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(2, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(2, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(2, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1),lauta.tarkistaKolarointi(2, 2));
-        assertEquals(true, lauta.tuhoutuikoPelaaja());
-    }
-        @Test
-    public void pelaajaHaviaaToistuvanVastustajanKolaroinninJaljilta() {
-        Esterata lauta = new Esterata(1, new Tekstiesitys());
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2),lauta.tarkistaKolarointi(1, 1));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2),lauta.tarkistaKolarointi(1, 1));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2),lauta.tarkistaKolarointi(1, 1));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2),lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 1));
         assertEquals(true, lauta.tuhoutuikoPelaaja());
     }
 
+    @Test
+    public void pelaajaHaviaaKolaroituaanEsteeseenToistuvasti() {
+        Esterata lauta = new Esterata(1, new Tekstiesitys());
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(2, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(2, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(2, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(2, 2));
+        assertEquals(true, lauta.tuhoutuikoPelaaja());
+    }
+
+    @Test
+    public void pelaajaHaviaaToistuvanVastustajanKolaroinninJaljilta() {
+        Esterata lauta = new Esterata(1, new Tekstiesitys());
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 1));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 1));
+        assertEquals(true, lauta.tuhoutuikoPelaaja());
+    }
 
 }
