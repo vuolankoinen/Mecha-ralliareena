@@ -140,7 +140,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
             pelaajaVoitti();
         } else if (lauta.tuhoutuikoPelaaja()) {
             pelaajaTuhoutui();
-        } else if (kierrosvaihe==2){
+        } else if (kierrosvaihe == 3) {
             alustaNappi(true, "Valitse seuraavat siirrot.");
         } else {
             alustaNappi(true, "Seuraavat siirrot.");
@@ -213,9 +213,9 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         kayttis.setPreferredSize(new Dimension(350, 500));
         final JButton aloitusnappi = new JButton("Aloita Mecharalli!");
         String apu = "Tervetuloa pelaamaan Mecharallia.\n";
-        apu+="Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n"
-        apu+="Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n"
-                apu+="Hauskaa hurjastelua!"
+        apu += "Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n";
+        apu += "Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n";
+        apu += "Hauskaa hurjastelua!";
         this.vuoroteksti = new JTextArea();
         vuoroteksti.setText(apu);
         this.vuoroteksti.setEditable(false);

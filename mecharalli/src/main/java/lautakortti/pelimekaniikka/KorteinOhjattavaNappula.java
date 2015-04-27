@@ -23,6 +23,8 @@ public class KorteinOhjattavaNappula implements Liikkuva {
                 this.kaikkiTarjollaOlevatSiirrot.add(i);
             }
         }
+        this.kaikkiTarjollaOlevatSiirrot.add(5); //jokerit
+        this.kaikkiTarjollaOlevatSiirrot.add(5);
         this.konkreettinenSiirtopakka = new ArrayList<Integer>();
                 this.konkreettinenSiirtopakka.addAll(this.kaikkiTarjollaOlevatSiirrot);
         Collections.shuffle(this.konkreettinenSiirtopakka);

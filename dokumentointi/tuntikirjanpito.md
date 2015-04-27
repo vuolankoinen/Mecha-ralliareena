@@ -16,3 +16,5 @@
 		Yksi null-pointereita ja laudan elementtien odottamatonta käyttäytymistä aiheuttanut bugi tuli korjattua.
 27.4.   2t	Maali näkyviin pelilaudalle,
 		tekstiraportti kuluneesta pelivuorosta
+28.4.	6t	Viimein kortein ohjattava pelaajanappula. Grafiikkaan tuhlattua aikaa.
+		Jokeri-ohjauskortti.

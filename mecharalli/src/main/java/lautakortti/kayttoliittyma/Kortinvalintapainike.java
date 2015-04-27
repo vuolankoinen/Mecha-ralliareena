@@ -1,13 +1,15 @@
 package lautakortti.kayttoliittyma;
 
+import java.util.Random;
 import javax.swing.JButton;
 
 public class Kortinvalintapainike extends JButton {
 
     private int siirto;
+    private Random arpa;
 
     public Kortinvalintapainike() {
-
+        this.arpa = new Random();
     }
 
     public void alusta(int siirto) {
@@ -30,6 +32,10 @@ public class Kortinvalintapainike extends JButton {
         if (siirto == 4) {
             return "z";
         }
+        if (siirto == 5) {
+            siirto = arpa.nextInt(4) + 1;
+            return annaSiirto();
+        }
         return "0";
 
     }
@@ -46,6 +52,9 @@ public class Kortinvalintapainike extends JButton {
         }
         if (siirto == 4) {
             return "^";
+        }
+        if (siirto == 5) {
+            return "?";
         }
         return "0";
 
