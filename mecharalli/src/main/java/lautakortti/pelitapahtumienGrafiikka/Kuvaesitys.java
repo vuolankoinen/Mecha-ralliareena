@@ -3,6 +3,7 @@ package lautakortti.pelitapahtumienGrafiikka;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -16,11 +17,13 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
     private int ruudunKoko;     //Piirrettävän pelilaudan ruudun sivu pikseleinä.
     private int ruutujaPystysuoraan;
     private int ruutujaVaakasuoraan;
+//    private Image nappula;
 
     public Kuvaesitys() {
         this.kuvastuvat = new ArrayList<Kuvastuva>();
         setPreferredSize(new Dimension(500, 450));
         super.setBackground(Color.LIGHT_GRAY);
+  //      this.nappula = new ImageIcon("nappula.png").getImage();
     }
 
     @Override
@@ -60,7 +63,10 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
     }
 
     private void piirraPelaaja(Kuvastuva mecha, Graphics graffat) {
-        graffat.drawRect((mecha.sijaintiSivusuunnassa() - 1) * this.ruudunKoko, (mecha.sijaintiPystysuunnassa() - 1) * this.ruudunKoko, this.ruudunKoko, this.ruudunKoko);
+//graffat.drawImage(this.nappula,50,50,null);     
+//   Graphics2D graffat2d = (Graphics2D)graffat;
+       // graffat2d.drawImage(this.nappula,1,1,null);
+graffat.drawRect((mecha.sijaintiSivusuunnassa() - 1) * this.ruudunKoko, (mecha.sijaintiPystysuunnassa() - 1) * this.ruudunKoko, this.ruudunKoko, this.ruudunKoko);
         graffat.fillRect((mecha.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + 40, (mecha.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + 40, this.ruudunKoko - 80, this.ruudunKoko - 80);
     }
 

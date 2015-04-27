@@ -3,13 +3,14 @@ package lautakortti.pelimekaniikka;
 import lautakortti.pelitapahtumienGrafiikka.Piirrustava;
 import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Esterata implements Pelilauta {
 
     private Piirrustava piirrin;
     private int leveys;
     private int korkeus;
-    private Nappula pelaaja;
+    private KorteinOhjattavaNappula pelaaja;
     private ArrayList<Kuvastuva> laudanOliot;
     private ArrayList<Liikkuva> laudanLiikkuvatOliot;
     private int maaliX;
@@ -31,7 +32,7 @@ public class Esterata implements Pelilauta {
             this.laudanLiikkuvatOliot.add(vastus);
             this.laudanOliot.add(vastus);
         }
-        Nappula pelaajanappula = new Nappula(1, 1);
+        KorteinOhjattavaNappula pelaajanappula = new KorteinOhjattavaNappula(1, 1);
         this.laudanOliot.add(pelaajanappula);
         this.laudanLiikkuvatOliot.add(pelaajanappula);
         this.pelaaja = pelaajanappula;
@@ -208,11 +209,13 @@ public class Esterata implements Pelilauta {
             this.pelaaja.asetaSeuraavaSiirto(3);
         }
     }
-/**
- * Antaa oliota vastaavan tekstikuvauksen vuororaporttia varten.
- * @param tunnistettava Kuvastuva laudan olio
- * @return tunnistettavan sanamuotoinen kuvaus
- */
+
+    /**
+     * Antaa oliota vastaavan tekstikuvauksen vuororaporttia varten.
+     *
+     * @param tunnistettava Kuvastuva laudan olio
+     * @return tunnistettavan sanamuotoinen kuvaus
+     */
     public String tunnistaOlioTekstiesitykseen(Kuvastuva tunnistettava) {
         int olio = tunnistettava.mikaKuva();
         if (olio == 1) {
@@ -230,5 +233,9 @@ public class Esterata implements Pelilauta {
 
     public String vuororaportti() {
         return this.vuororaportti;
+    }
+
+    public ArrayList<Integer> seuraavatViisiVaihtoehtoa() {
+        return this.pelaaja.seuraavatViisiVaihtoehtoa();
     }
 }

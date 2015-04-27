@@ -1,5 +1,7 @@
 package lautakortti.pelimekaniikka;
 
+import java.util.ArrayList;
+
 public interface Pelilauta {
 
     //Tämän rajapinnan toteuttavien luokkien oliot ovat pelattavissa.
@@ -15,4 +17,6 @@ public interface Pelilauta {
     abstract void piirra();
     
     abstract void asetaSiirto(String siirto);  
+    
+    abstract ArrayList<Integer> seuraavatViisiVaihtoehtoa();
 }

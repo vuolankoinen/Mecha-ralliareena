@@ -11,7 +11,10 @@ public class Ohjelma {
 //        Kayttoliittyma kayttis = new Kayttoliittyma();    //tekstipohjainen koeversio
 //        kayttis.kaynnista();
 
-        GraafinenKayttoliittyma kayttis = new GraafinenKayttoliittyma();
+//        GraafinenKayttoliittyma kayttis = new GraafinenKayttoliittyma();
+//        SwingUtilities.invokeLater(kayttis);
+
+        KortillinenGraafinenKayttoliittyma kayttis = new KortillinenGraafinenKayttoliittyma();
         SwingUtilities.invokeLater(kayttis);
     }
 }
