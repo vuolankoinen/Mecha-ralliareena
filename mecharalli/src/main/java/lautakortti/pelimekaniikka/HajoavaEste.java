@@ -24,7 +24,7 @@ public class HajoavaEste implements Kuvastuva {
     }
 
     public HajoavaEste(int x, int y) {
-        this(x, y, 7, false, 3);
+        this(x, y, 7, true, 2);
     }
 
     public int sijaintiSivusuunnassa() {
@@ -40,16 +40,15 @@ public class HajoavaEste implements Kuvastuva {
     }
 
     public boolean vahingoittaakoKolaroidessa(int kuinkaKovaa) {
-        kuinkaKovaa = Math.max(kuinkaKovaa, 0);
-        this.hiparit -= kuinkaKovaa;
+        this.hiparit -= Math.max(kuinkaKovaa, 2);
         return this.vahingoittaaKolaroidessa;
     }
 
     public boolean onkoRikki() {
-        if (this.hiparit < 1) {
-            return true;
+        if (this.hiparit > 0) {
+            return false;
         }
-        return false;
+        return true;
     }
 
 }

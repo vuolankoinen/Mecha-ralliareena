@@ -9,7 +9,8 @@ public interface Pelilauta {
     
     abstract boolean tuhoutuikoPelaaja();
     
-    abstract void teeSiirrot();
+    //Siirtojen tekeminen palauttaa tekstikuvauksen tapahtumista.
+    abstract String teeSiirrot();
     
     abstract void piirra();
     

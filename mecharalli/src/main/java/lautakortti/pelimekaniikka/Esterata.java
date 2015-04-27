@@ -14,6 +14,7 @@ public class Esterata implements Pelilauta {
     private ArrayList<Liikkuva> laudanLiikkuvatOliot;
     private int maaliX;
     private int maaliY;
+    private String vuororaportti;
 
     public Esterata(int tyyppi, Piirrustava piirrin) {
         this.piirrin = piirrin;
@@ -22,7 +23,7 @@ public class Esterata implements Pelilauta {
             this.korkeus = 4;
             this.laudanOliot = new ArrayList<Kuvastuva>();
             this.laudanOliot.add(new LiikkumatonEste(2, 2, 6, true));
-            this.laudanOliot.add(new HajoavaEste(2, 3));
+            this.laudanOliot.add(new HajoavaEste(2, 3, 7, false, 5));
             this.laudanLiikkuvatOliot = new ArrayList<Liikkuva>();
             this.maaliX = 4;
             this.maaliY = 4;
@@ -41,7 +42,10 @@ public class Esterata implements Pelilauta {
     }
 
     public void piirra() {
-        piirrin.piirra(leveys, korkeus, laudanOliot);
+        ArrayList<Kuvastuva> kuvastuvatJaMaali = new ArrayList<Kuvastuva>();
+        kuvastuvatJaMaali.addAll(laudanOliot);
+        kuvastuvatJaMaali.add(new LiikkumatonEste(this.maaliX, this.maaliY, 10));
+        piirrin.piirra(leveys, korkeus, kuvastuvatJaMaali);
     }
 
     /**
@@ -49,7 +53,8 @@ public class Esterata implements Pelilauta {
      * seuraavan siirron, jonka sitten toteuttaa. Siirtojen jälkeen poistetaan
      * laudalta kolarien rikkomat oliot.
      */
-    public void teeSiirrot() {
+    public String teeSiirrot() {
+        this.vuororaportti = "";
         for (Liikkuva mecha : this.laudanLiikkuvatOliot) {
             int siirto = mecha.kerroSeuraavaSiirto();
             if (siirto > 0 && siirto < 5) { //Jokin neljästä yksinkertaisesta siirrosta.
@@ -57,10 +62,17 @@ public class Esterata implements Pelilauta {
                 continue;
             }    //jne: Tähän myöhemmin toteutettavat muut siirrot.
         }
+        siivoaRikkoutuneetLaudalta();
+        return vuororaportti();
+    }
+
+    public void siivoaRikkoutuneetLaudalta() {
         ArrayList<Kuvastuva> kopio = new ArrayList<Kuvastuva>();
         kopio.addAll(this.laudanOliot);
         for (Kuvastuva tarkistettava : kopio) {
-            this.poistaRikkoutunut(tarkistettava);
+            if (this.poistaRikkoutunut(tarkistettava)) {
+                vuororaportti += "-" + this.tunnistaOlioTekstiesitykseen(tarkistettava) + " rikkoutui\n";
+            }
         }
     }
 
@@ -75,29 +87,33 @@ public class Esterata implements Pelilauta {
         if (siirto == 1) {           //Ylös
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1) != null) {
                 this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
+                this.vuororaportti += "-" + tunnistaOlioTekstiesitykseen(mecha) + " törmäsi olioon " + tunnistaOlioTekstiesitykseen(tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1)) + "\n";
                 return;
             }
-            mecha.liiku(1, 0, this.korkeus+1, this.leveys+1);
+            mecha.liiku(1, 0, this.korkeus + 1, this.leveys + 1);
 
         } else if (siirto == 2) {    //Oikealle
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa() + 1, mecha.sijaintiPystysuunnassa()) != null) {
-                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
+                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa() + 1, mecha.sijaintiPystysuunnassa()));
+                this.vuororaportti += "-" + tunnistaOlioTekstiesitykseen(mecha) + " törmäsi olioon " + tunnistaOlioTekstiesitykseen(tarkistaKolarointi(mecha.sijaintiSivusuunnassa() + 1, mecha.sijaintiPystysuunnassa())) + "\n";
                 return;
             }
-            mecha.liiku(0, 1, this.korkeus+1, this.leveys+1);
+            mecha.liiku(0, 1, this.korkeus + 1, this.leveys + 1);
 
         } else if (siirto == 3) {    //Alas
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() - 1) != null) {
-                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
+                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() - 1));
+                this.vuororaportti += "-" + tunnistaOlioTekstiesitykseen(mecha) + " törmäsi olioon " + tunnistaOlioTekstiesitykseen(tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() - 1)) + "\n";
                 return;
             }
-            mecha.liiku(-1, 0, this.korkeus+1, this.leveys+1);
+            mecha.liiku(-1, 0, this.korkeus + 1, this.leveys + 1);
         } else if (siirto == 4) {    //Vasemmalle
             if (this.tarkistaKolarointi(mecha.sijaintiSivusuunnassa() - 1, mecha.sijaintiPystysuunnassa()) != null) {
-                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa(), mecha.sijaintiPystysuunnassa() + 1));
+                this.kolaroi(mecha, tarkistaKolarointi(mecha.sijaintiSivusuunnassa() - 1, mecha.sijaintiPystysuunnassa()));
+                this.vuororaportti += "-" + tunnistaOlioTekstiesitykseen(mecha) + " törmäsi olioon " + tunnistaOlioTekstiesitykseen(tarkistaKolarointi(mecha.sijaintiSivusuunnassa() - 1, mecha.sijaintiPystysuunnassa())) + "\n";
                 return;
             }
-            mecha.liiku(0, -1, this.korkeus+1, this.leveys+1);
+            mecha.liiku(0, -1, this.korkeus + 1, this.leveys + 1);
 
         }
     }
@@ -127,10 +143,9 @@ public class Esterata implements Pelilauta {
      * @param uhri Kolarin liikkumaton osapuoli, Kuvastuva olio.
      */
     public void kolaroi(Kuvastuva liikkuva, Kuvastuva uhri) {
-        if (uhri == null) {    //En tajua, mistä tämä null-pointeri tulee. :(
-            return;         //Pitää selvittää, niin pääsee tästä hätäratkaisusta.
-        }
-        uhri.toString();
+        //if (uhri == null) {    //En tajua, mistä tämä null-pointeri tulee. :(
+        //    return;         //Pitää selvittää, niin pääsee tästä hätäratkaisusta.
+        //}
         boolean onkoKova = uhri.vahingoittaakoKolaroidessa(2);
         if (onkoKova) {
             liikkuva.vahingoittaakoKolaroidessa(1);
@@ -148,8 +163,8 @@ public class Esterata implements Pelilauta {
         if (!rikottu.onkoRikki()) {
             return false;
         }
-        this.laudanLiikkuvatOliot.remove(rikottu);
         this.laudanOliot.remove(rikottu);
+        this.laudanLiikkuvatOliot.remove(rikottu);
         return true;
     }
 
@@ -180,7 +195,7 @@ public class Esterata implements Pelilauta {
     /**
      * Asettaa pelaajanappulan seuraavan siirron pelaajan syötteen perusteella.
      *
-     * @param siirto Pelaajan syöte, jokin toivottavasti jokin merkeistä awsz.
+     * @param siirto Pelaajan syöte, toivottavasti jokin merkeistä awsz.
      */
     public void asetaSiirto(String siirto) {
         if (siirto.equals("w")) {
@@ -192,5 +207,28 @@ public class Esterata implements Pelilauta {
         } else if (siirto.equals("z")) {
             this.pelaaja.asetaSeuraavaSiirto(3);
         }
+    }
+/**
+ * Antaa oliota vastaavan tekstikuvauksen vuororaporttia varten.
+ * @param tunnistettava Kuvastuva laudan olio
+ * @return tunnistettavan sanamuotoinen kuvaus
+ */
+    public String tunnistaOlioTekstiesitykseen(Kuvastuva tunnistettava) {
+        int olio = tunnistettava.mikaKuva();
+        if (olio == 1) {
+            return "pelaajanappula";
+        } else if (olio == 6) {
+            return "kivi";
+        } else if (olio == 3) {
+            return "vastustajan mecha";
+        } else if (olio == 7) {
+            return "puulaatikko";
+        } else {
+            return "tuntematon olio";
+        }
+    }
+
+    public String vuororaportti() {
+        return this.vuororaportti;
     }
 }

@@ -1,5 +1,6 @@
 package lautakortti.kayttoliittyma;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,50 +19,13 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JButton nappi;
     private JPanel komennot;
     private Pelilauta lauta;
+    private JTextArea vuoroteksti;
 
     public GraafinenKayttoliittyma() {
     }
 
     public void run() {
-        this.pohja = new JFrame();
-        this.ruutu = new JPanel();
-        this.esitys = new Kuvaesitys();
-        this.kayttis = new JPanel();
-        kayttis.setPreferredSize(new Dimension(350, 500));
-        final JButton aloitusnappi = new JButton("Aloita Mecharalli!");
-        final JLabel tervehdysteksti = new JLabel("Tervetuloa pelaamaan Medhcarallia.");
-        aloitusnappi.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                aloitusnappi.setVisible(false);
-                tervehdysteksti.setVisible(false);
-                aloita();
-            }
-
-        });
-        this.nappi = new JButton();
-        alustaNappi(false, "Selvä.");
-        kayttis.add(nappi);
-        nappi.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                nappi.setVisible(false);
-                komennot.setVisible(true);
-            }
-
-        });
-
-        kayttis.add(tervehdysteksti);
-        kayttis.add(aloitusnappi);
-        ruutu.add(esitys);
-        ruutu.add(kayttis);
-        pohja.add(ruutu);
-        pohja.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pohja.setMinimumSize(new Dimension(1000, 700));
-        pohja.setLocationRelativeTo(null);
-        pohja.pack();
+        alustaKayttis();
         pohja.setVisible(true);
 
     }
@@ -127,14 +91,13 @@ public class GraafinenKayttoliittyma implements Runnable {
 
     public void eteneVuoro(String komento) {
         lauta.asetaSiirto(komento);
-        lauta.teeSiirrot();
-
+        this.vuoroteksti.setText(lauta.teeSiirrot());
+        lauta.piirra();
         if (lauta.voittikoPelaaja()) {
             pelaajaVoitti();
         } else if (lauta.tuhoutuikoPelaaja()) {
             pelaajaTuhoutui();
         } else {
-            lauta.piirra();
             alustaNappi(true, "Seuraava kierros.");
             //esitys.repaint();
         }
@@ -182,11 +145,61 @@ public class GraafinenKayttoliittyma implements Runnable {
 
     }
 
+    /**
+     * Alustaa napin, jolla pelikierroksessa edetään.
+     *
+     * @param nakyy Tuleeko nappi näkyviin vai ei
+     * @param viesti Mikä viesti nappiin kirjoitetaan
+     */
     public void alustaNappi(boolean nakyy, String viesti) {
         this.nappi.setName(viesti);
         nappi.setText(viesti);
         this.nappi.repaint();
         this.nappi.setVisible(nakyy);
+    }
+
+    public void alustaKayttis() {
+        this.pohja = new JFrame();
+        this.ruutu = new JPanel();
+        this.esitys = new Kuvaesitys();
+        this.kayttis = new JPanel();
+        kayttis.setPreferredSize(new Dimension(350, 500));
+        final JButton aloitusnappi = new JButton("Aloita Mecharalli!");
+        this.vuoroteksti = new JTextArea("Tervetuloa pelaamaan Mecharallia.");
+        this.vuoroteksti.setEditable(false);
+        this.vuoroteksti.setBackground(Color.LIGHT_GRAY);
+        aloitusnappi.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                aloitusnappi.setVisible(false);
+                vuoroteksti.setText("");
+                aloita();
+            }
+
+        });
+        this.nappi = new JButton();
+        alustaNappi(false, "Selvä.");
+        kayttis.add(nappi);
+        nappi.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                nappi.setVisible(false);
+                komennot.setVisible(true);
+            }
+
+        });
+
+        kayttis.add(vuoroteksti);
+        kayttis.add(aloitusnappi);
+        ruutu.add(esitys);
+        ruutu.add(kayttis);
+        pohja.add(ruutu);
+        pohja.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pohja.setMinimumSize(new Dimension(1000, 700));
+        pohja.setLocationRelativeTo(null);
+        pohja.pack();
     }
 
 }

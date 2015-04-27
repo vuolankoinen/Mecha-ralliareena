@@ -12,3 +12,7 @@
 		Pelaajavuorovaikutusta haluttuun suuntaan korvaavalla pelinappulaluokalla.
 22.4.	4t	Grafiikan kanssa sähläämistä.
 24.4.	11t	Käyttöliittymän ja grafiikan kanssa puuhastelua, testien päivittämistä.
+26.4.	4t	Pelimekaniikkaluokkien sovittelua suunniteltuihin sääntöihin yms.
+		Yksi null-pointereita ja laudan elementtien odottamatonta käyttäytymistä aiheuttanut bugi tuli korjattua.
+27.4.   1t	Maali näkyviin pelilaudalle,
+		tekstiraportti kuluneesta pelivuorosta
