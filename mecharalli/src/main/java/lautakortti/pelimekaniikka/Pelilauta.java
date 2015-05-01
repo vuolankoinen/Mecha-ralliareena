@@ -19,4 +19,6 @@ public interface Pelilauta {
     abstract void asetaSiirto(String siirto);  
     
     abstract ArrayList<Integer> seuraavatViisiVaihtoehtoa();
+    
+    abstract void nollaaSiirrot();
 }

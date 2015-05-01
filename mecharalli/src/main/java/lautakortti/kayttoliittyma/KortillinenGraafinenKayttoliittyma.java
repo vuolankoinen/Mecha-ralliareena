@@ -13,14 +13,14 @@ import lautakortti.pelitapahtumienGrafiikka.Kuvaesitys;
 
 public class KortillinenGraafinenKayttoliittyma implements Runnable {
 
-    private JFrame pohja;
-    private JPanel ruutu;
+    private JFrame pohja;   //kaikki muu tulee tähän
+    private JPanel ruutu;       //pelilaudan kuva tule tähän
     private Kuvaesitys esitys;
-    private JPanel kayttis;
+    private JPanel kayttis;     //Painikkeet yms. käyttöliittymä tulee tähän
     private JButton nappi;
-    private JPanel komennot;
+    private JPanel komennot;    //Siirtovalintapainikkeet tähän
     private Pelilauta lauta;
-    private JTextArea vuoroteksti;
+    private JTextArea vuoroteksti;      //Käyttäjälle tiedoksi tuleva teksti
     private int kierrosvaihe;
     private Kortinvalintapainike eka;
     private Kortinvalintapainike toka;
@@ -37,8 +37,11 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         pohja.setVisible(true);
     }
 
-    public void aloita() {
-        this.lauta = alustaLauta(2);
+    /**
+     * Tekee pelin alkutoimet.
+     */
+    private void aloita(int laudanlaji) {
+        this.lauta = alustaLauta(laudanlaji);
         lauta.piirra();
         kysyEkaEkaSiirto();
     }
@@ -51,7 +54,6 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         this.komennot = new JPanel();
         alustaValintapainikkeet();
         this.kayttis.add(komennot);
-
     }
 
     /**
@@ -69,6 +71,16 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         komennot.add(neljas);
         komennot.add(viides);
         valintapainikkeisiinKuuntelijat();
+        JButton nollaa = new JButton("Peru valinnat.");
+        nollaa.setBackground(Color.ORANGE);
+        nollaa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                nollaaSiirrot();
+            }
+        }
+        );
+        komennot.add(nollaa);
         this.uudetSiirrot();
     }
 
@@ -133,7 +145,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
     /**
      * Pyörittää yhden kierroksen siirrot. jatkaSiirtoja() tuo tänne.
      */
-    public void eteneVuoro() {
+    private void eteneVuoro() {
         this.vuoroteksti.setText(lauta.teeSiirrot());
         lauta.piirra();
         if (lauta.voittikoPelaaja()) {
@@ -143,50 +155,53 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         } else if (kierrosvaihe == 3) {
             alustaNappi(true, "Valitse seuraavat siirrot.");
         } else {
-            alustaNappi(true, "Seuraavat siirrot.");
+            alustaNappi(true, "Toteuta seuraavat siirrot.");
         }
     }
 
+    /**
+     * Voittoviesti ja pelin lopetus.
+     */
     public void pelaajaVoitti() {
         alustaNappi(true, "Poistu voittajana.");
         kayttis.add(new JLabel("Onneksi olkoon, voitit!"));
         nappi.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.exit(0);
             }
-
         });
     }
 
+    /**
+     * Tappioviesti ja pelin lopetus.
+     */
     public void pelaajaTuhoutui() {
         kayttis.add(new JLabel("Voi sentään, hävisit!"));
         alustaNappi(true, "Lopeta peli.");
         nappi.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.exit(0);
             }
-
         });
     }
 
     /**
      * Luo uuden pelilaudan.
      *
-     * @param laji Parametri kertoo, minkälainen lauta luodaan.
-     * 1=4x4-alkeellinenPelilauta
+     * @param laji Parametri kertoo, minkälainen lauta luodaan. 1 = 4x4
+     * alkeellinen pelilauta 2 = 7*7 vaikeahko pelilauta
      * @return
      */
     public Pelilauta alustaLauta(int laji) { //Luo pyydetynlaisen pelilaudan.
-//        if (laji == 1) {
-//            return new Esterata(laji, new Tekstiesitys());
-//        } else {
-        return new Esterata(1, esitys);
-//        }
-
+        if (laji == 1) {
+            return new Esterata(laji, esitys);
+        } else if (laji == 3) {
+            return new Esterata(3, esitys);
+        } //else {
+        return new Esterata(2, esitys); //keskikokoinen lauta on oletus
+        //       }
     }
 
     /**
@@ -210,47 +225,90 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         this.ruutu = new JPanel();
         this.esitys = new Kuvaesitys();
         this.kayttis = new JPanel();
-        kayttis.setPreferredSize(new Dimension(350, 500));
-        final JButton aloitusnappi = new JButton("Aloita Mecharalli!");
-        String apu = "Tervetuloa pelaamaan Mecharallia.\n";
-        apu += "Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n";
-        apu += "Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n";
-        apu += "Hauskaa hurjastelua!";
-        this.vuoroteksti = new JTextArea();
-        vuoroteksti.setText(apu);
-        this.vuoroteksti.setEditable(false);
-        this.vuoroteksti.setBackground(Color.LIGHT_GRAY);
+        kayttis.setPreferredSize(new Dimension(400, 500));
+        final JButton aloitusnappi = new JButton("1. Pieni pelilauta");
+        final JButton aloitusnappi2 = new JButton("2. Isompi pelilauta");
+        final JButton aloitusnappi3 = new JButton("3. Vielä isompi pelilauta");
+        alustaTervehdysteksti();
         aloitusnappi.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent ae) {
+                aloitusnappi2.setVisible(false);
                 aloitusnappi.setVisible(false);
+                aloitusnappi3.setVisible(false);
                 vuoroteksti.setText("");
-                aloita();
+                aloita(1);
             }
         });
+        aloitusnappi3.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae
+                    ) {
+                        aloitusnappi2.setVisible(false);
+                        aloitusnappi.setVisible(false);
+                        aloitusnappi3.setVisible(false);
+                        vuoroteksti.setText("");
+                        aloita(3);
+                    }
+                }
+        );
+        aloitusnappi2.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae
+                    ) {
+                        aloitusnappi2.setVisible(false);
+                        aloitusnappi.setVisible(false);
+                        aloitusnappi3.setVisible(false);
+                        vuoroteksti.setText("");
+                        aloita(2);
+                    }
+                }
+        );
+
         this.nappi = new JButton();
-        alustaNappi(false, "Selvä.");
+
+        alustaNappi(
+                false, "Selvä.");
         kayttis.add(nappi);
-        nappi.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                nappi.setVisible(false);
-                jatkaSiirtoja();
-            }
+        nappi.addActionListener(
+                new ActionListener() {
 
-        });
+                    @Override
+                    public void actionPerformed(ActionEvent ae
+                    ) {
+                        nappi.setVisible(false);
+                        jatkaSiirtoja();
+                    }
+
+                }
+        );
 
         kayttis.add(vuoroteksti);
         kayttis.add(aloitusnappi);
+        kayttis.add(aloitusnappi2);
+        kayttis.add(aloitusnappi3);
         ruutu.add(esitys);
         ruutu.add(kayttis);
         pohja.add(ruutu);
         pohja.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pohja.setMinimumSize(new Dimension(1000, 700));
+        pohja.setMinimumSize(new Dimension(800, 500));
         pohja.setLocationRelativeTo(null);
         pohja.pack();
+    }
+
+    private void alustaTervehdysteksti() {
+        String apu = "Tervetuloa pelaamaan Mecharallia.\n\n";
+        apu += "Ohjaat sinistä mecha-robottia.\n";
+        apu += "Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n";
+        apu += "Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n\n";
+        apu += "    Hauskaa hurjastelua!\n";
+        this.vuoroteksti = new JTextArea();
+        vuoroteksti.setText(apu);
+        this.vuoroteksti.setEditable(false);
+        this.vuoroteksti.setBackground(Color.LIGHT_GRAY);
     }
 
     /**
@@ -260,6 +318,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
      * siirrot.
      */
     private void jatkaSiirtoja() {
+        this.vuoroteksti.setText("");
         if (kierrosvaihe < 0) {
             komennot.setVisible(false);
             kierrosvaihe = 0;
@@ -287,4 +346,13 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         this.komennot.setVisible(true);
     }
 
+    private void nollaaSiirrot() {
+        this.eka.setEnabled(true);
+        this.toka.setEnabled(true);
+        this.kolmas.setEnabled(true);
+        this.neljas.setEnabled(true);
+        this.viides.setEnabled(true);
+        this.lauta.nollaaSiirrot();
+        kierrosvaihe = -1;
+    }
 }

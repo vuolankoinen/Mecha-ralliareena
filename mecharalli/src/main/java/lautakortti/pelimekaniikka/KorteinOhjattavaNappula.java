@@ -145,4 +145,8 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         Collections.shuffle(this.konkreettinenSiirtopakka);
     }
 
+    public void nollaaSiirrot(){
+        this.seuraavaSiirto.clear();
+    }
+    
 }

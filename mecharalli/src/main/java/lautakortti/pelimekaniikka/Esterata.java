@@ -20,22 +20,91 @@ public class Esterata implements Pelilauta {
     public Esterata(int tyyppi, Piirrustava piirrin) {
         this.piirrin = piirrin;
         if (tyyppi == 1) {      //Erilaisia lautoja voi lisätä eri parametreille.
-            this.leveys = 4;
-            this.korkeus = 4;
-            this.laudanOliot = new ArrayList<Kuvastuva>();
-            this.laudanOliot.add(new LiikkumatonEste(2, 2, 6, true));
-            this.laudanOliot.add(new HajoavaEste(2, 3, 7, false, 5));
-            this.laudanLiikkuvatOliot = new ArrayList<Liikkuva>();
-            this.maaliX = 4;
-            this.maaliY = 4;
-            SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 2);
-            this.laudanLiikkuvatOliot.add(vastus);
-            this.laudanOliot.add(vastus);
+            luoLauta1();
+        } else if (tyyppi == 3) {
+            luoLauta3();
+        } else {
+            luoLauta2();
         }
         KorteinOhjattavaNappula pelaajanappula = new KorteinOhjattavaNappula(1, 1);
         this.laudanOliot.add(pelaajanappula);
         this.laudanLiikkuvatOliot.add(pelaajanappula);
         this.pelaaja = pelaajanappula;
+    }
+
+    private void luoLauta1() {
+        this.leveys = 4;
+        this.korkeus = 4;
+        this.laudanOliot = new ArrayList<Kuvastuva>();
+        this.laudanOliot.add(new LiikkumatonEste(2, 2, 6, true));
+        this.laudanOliot.add(new HajoavaEste(2, 3, 7, false, 5));
+        this.laudanLiikkuvatOliot = new ArrayList<Liikkuva>();
+        this.maaliX = 4;
+        this.maaliY = 4;
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 2);
+        this.laudanLiikkuvatOliot.add(vastus);
+        this.laudanOliot.add(vastus);
+    }
+
+    private void luoLauta2() {
+        this.leveys = 7;
+        this.korkeus = 7;
+        this.laudanOliot = new ArrayList<Kuvastuva>();
+        this.laudanOliot.add(new LiikkumatonEste(2, 2, 6, true));
+        this.laudanOliot.add(new LiikkumatonEste(5, 2, 6, true));
+        this.laudanOliot.add(new LiikkumatonEste(2, 4, 6, true));
+        this.laudanOliot.add(new HajoavaEste(2, 3, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(6, 5, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(4, 3, 7, false, 5));
+        this.laudanLiikkuvatOliot = new ArrayList<Liikkuva>();
+        this.maaliX = 7;
+        this.maaliY = 7;
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(4, 2);
+        this.laudanLiikkuvatOliot.add(vastus);
+        this.laudanOliot.add(vastus);
+        SatunnaisestiLiikkuvaVastustaja vastus2 = new SatunnaisestiLiikkuvaVastustaja(1, 2);
+        this.laudanLiikkuvatOliot.add(vastus2);
+        this.laudanOliot.add(vastus2);
+        SatunnaisestiLiikkuvaVastustaja vastus3 = new SatunnaisestiLiikkuvaVastustaja(6, 6);
+        this.laudanLiikkuvatOliot.add(vastus3);
+        this.laudanOliot.add(vastus3);
+    }
+    
+        private void luoLauta3() {
+        this.leveys = 8;
+        this.korkeus = 8;
+        this.laudanOliot = new ArrayList<Kuvastuva>();
+        this.laudanOliot.add(new LiikkumatonEste(2, 2, 6, true));
+        this.laudanOliot.add(new LiikkumatonEste(5, 2, 6, true));
+        this.laudanOliot.add(new LiikkumatonEste(2, 4, 6, true));
+        this.laudanOliot.add(new LiikkumatonEste(7, 7, 6, true));
+        this.laudanOliot.add(new HajoavaEste(7, 1, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(7, 2, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(8, 2, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(1, 7, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(2, 7, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(2, 8, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(8, 7, 7, false, 5));
+        this.laudanOliot.add(new HajoavaEste(7, 8, 7, false, 5));
+        this.laudanLiikkuvatOliot = new ArrayList<Liikkuva>();
+        this.maaliX = 8;
+        this.maaliY = 8;
+        SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(8, 1);
+        this.laudanLiikkuvatOliot.add(vastus);
+        this.laudanOliot.add(vastus);
+        SatunnaisestiLiikkuvaVastustaja vastus2 = new SatunnaisestiLiikkuvaVastustaja(1, 8);
+        this.laudanLiikkuvatOliot.add(vastus2);
+        this.laudanOliot.add(vastus2);
+        SatunnaisestiLiikkuvaVastustaja vastus3 = new SatunnaisestiLiikkuvaVastustaja(6, 6);
+        this.laudanLiikkuvatOliot.add(vastus3);
+        this.laudanOliot.add(vastus3);
+                SatunnaisestiLiikkuvaVastustaja vastus4 = new SatunnaisestiLiikkuvaVastustaja(5, 5);
+        this.laudanLiikkuvatOliot.add(vastus4);
+        this.laudanOliot.add(vastus4);
+this.laudanOliot.add(vastus3);
+                SatunnaisestiLiikkuvaVastustaja vastus5 = new SatunnaisestiLiikkuvaVastustaja(3, 3);
+        this.laudanLiikkuvatOliot.add(vastus5);
+        this.laudanOliot.add(vastus5);
     }
 
     public Esterata(Piirrustava piirrin) {
@@ -64,6 +133,9 @@ public class Esterata implements Pelilauta {
             }    //jne: Tähän myöhemmin toteutettavat muut siirrot.
         }
         siivoaRikkoutuneetLaudalta();
+        if (this.vuororaportti.equals("")) {
+            return "Siirrot sujuivat kolareitta.";
+        }
         return vuororaportti();
     }
 
@@ -117,6 +189,10 @@ public class Esterata implements Pelilauta {
             mecha.liiku(0, -1, this.korkeus + 1, this.leveys + 1);
 
         }
+    }
+    
+    public void nollaaSiirrot(){
+        this.pelaaja.nollaaSiirrot();
     }
 
     /**
