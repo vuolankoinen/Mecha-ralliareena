@@ -41,9 +41,7 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         super.paintComponent(graffat);
         graffat.drawRect(1, 1, 498, 498); //laudan neliönmuotoiset reunat
         for (Kuvastuva kuva : this.kuvastuvat) {
-            if (kuva.mikaKuva() == 1) {
-                piirraPelaaja(kuva, graffat);
-            } else if (kuva.mikaKuva() == 2) {
+            if (kuva.mikaKuva() == 2) {
                 graffat.drawRect((kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko, (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko, this.ruudunKoko, this.ruudunKoko);
             } else if (kuva.mikaKuva() == 3) {
                 piirraVastus(kuva, graffat);
@@ -54,7 +52,15 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
             } else if (kuva.mikaKuva() == 10) { //maali
                 graffat.setColor(Color.PINK);
                 graffat.fillRect((kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + (this.ruudunKoko / 3), (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + (this.ruudunKoko / 3), (this.ruudunKoko / 3), (this.ruudunKoko / 3));
+            } else if (kuva.mikaKuva() == 4) {
+                piirraTeslatorni(kuva, graffat);
+            } else if (kuva.mikaKuva() == 1) {
+                piirraPelaaja(kuva, graffat);
+            } else if (kuva.mikaKuva() == -1) {
+                piirraPelaaja(kuva, graffat);
+                piirraHalkeamia(kuva, graffat);
             }
+
         }
     }
 
@@ -64,18 +70,18 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         suorakaide(mecha, graffat, 70, 60, 5, 35);
         suorakaide(mecha, graffat, 24, 45, 7, 38);
         suorakaide(mecha, graffat, 69, 45, 7, 38);
-        graffat.setColor(Color.blue);
+        graffat.setColor(Color.MAGENTA);
         suorakaide(mecha, graffat, 19, 25, 62, 40); //runko
         pallo(mecha, graffat, 18, 15, 63);
         suorakaide(mecha, graffat, 23, 92, 9, 3);   //tassut
         suorakaide(mecha, graffat, 68, 92, 9, 3);
         graffat.setColor(Color.DARK_GRAY);
-        suorakaide(mecha,graffat,73,31,4,4);    //tuuletusaukot
-        suorakaide(mecha,graffat,73,37,4,4);
+        suorakaide(mecha, graffat, 73, 31, 4, 4);    //tuuletusaukot
+        suorakaide(mecha, graffat, 73, 37, 4, 4);
         graffat.setColor(Color.black);  //sensori
-        pallo(mecha,graffat,34,44,9);
+        pallo(mecha, graffat, 34, 44, 9);
         graffat.setColor(Color.red);
-        pallo(mecha,graffat,37,47,4);
+        pallo(mecha, graffat, 37, 47, 4);
     }
 
     private void piirraLaatikko(Kuvastuva loota, Graphics graffat) {
@@ -91,21 +97,32 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         viiva(loota, graffat, 70, 20, 70, 80);
     }
 
+    private void piirraTeslatorni(Kuvastuva kuva, Graphics graffat) {
+        graffat.setColor(Color.BLACK);
+        suorakaide(kuva, graffat, 40, 30, 20, 65);
+        graffat.setColor(Color.blue);
+        pallo(kuva, graffat, 32, 25, 35);
+        viiva(kuva, graffat, 30, 20, 25, 15);
+        viiva(kuva, graffat, 26, 43, 21, 52);
+        viiva(kuva, graffat, 70, 27, 78, 22);
+        viiva(kuva, graffat, 70, 43, 78, 51);
+    }
+
     private void piirraVastus(Kuvastuva kuva, Graphics graffat) {
         graffat.setColor(Color.black);
         suorakaide(kuva, graffat, 21, 60, 10, 35);  //jalat
         suorakaide(kuva, graffat, 74, 60, 10, 35);
-        graffat.setColor(Color.MAGENTA);
+        graffat.setColor(Color.blue);
         suorakaide(kuva, graffat, 20, 20, 64, 50);  //runko
         pallo(kuva, graffat, 17, 12, 70);
         suorakaide(kuva, graffat, 18, 91, 16, 4);   //tassut
         suorakaide(kuva, graffat, 71, 91, 16, 4);
         graffat.setColor(Color.black);
         pallo(kuva, graffat, 66, 49, 9);        //"silmät"
-        pallo(kuva, graffat, 63, 56, 6);
+        pallo(kuva, graffat, 62, 57, 6);
         graffat.setColor(Color.red);
         pallo(kuva, graffat, 69, 52, 4);
-        pallo(kuva, graffat, 66, 59, 2);
+        pallo(kuva, graffat, 65, 60, 2);
     }
 
     private void piirraKivikasa(Kuvastuva kuva, Graphics graffat) {
@@ -120,8 +137,11 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         suorakaide(kuva, graffat, 25, 35, 10, 20);
     }
 
-    public int ruutu() {     //Vain testejä varten :P
-        return this.ruudunKoko;
+    private void piirraHalkeamia(Kuvastuva kuva, Graphics graffat) {
+        graffat.setColor(Color.black);
+        viiva(kuva, graffat, 60, 60, 70, 50);
+        viiva(kuva, graffat, 70, 50, 75, 45);
+        viiva(kuva, graffat, 70, 50, 75, 52);
     }
 
     /**

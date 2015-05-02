@@ -195,13 +195,11 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
      * @return
      */
     public Pelilauta alustaLauta(int laji) { //Luo pyydetynlaisen pelilaudan.
-        if (laji == 1) {
+        if (laji < 5 && laji > 0) {
             return new Esterata(laji, esitys);
-        } else if (laji == 3) {
-            return new Esterata(3, esitys);
-        } //else {
-        return new Esterata(2, esitys); //keskikokoinen lauta on oletus
-        //       }
+        } else {
+            return new Esterata(2, esitys); //keskikokoinen lauta on oletus
+        }
     }
 
     /**
@@ -229,6 +227,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         final JButton aloitusnappi = new JButton("1. Pieni pelilauta");
         final JButton aloitusnappi2 = new JButton("2. Isompi pelilauta");
         final JButton aloitusnappi3 = new JButton("3. Vielä isompi pelilauta");
+        final JButton aloitusnappi4 = new JButton("4. Isoin, arvottu lauta");
         alustaTervehdysteksti();
         aloitusnappi.addActionListener(new ActionListener() {
             @Override
@@ -236,6 +235,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
                 aloitusnappi2.setVisible(false);
                 aloitusnappi.setVisible(false);
                 aloitusnappi3.setVisible(false);
+                aloitusnappi4.setVisible(false);
                 vuoroteksti.setText("");
                 aloita(1);
             }
@@ -248,6 +248,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
                         aloitusnappi2.setVisible(false);
                         aloitusnappi.setVisible(false);
                         aloitusnappi3.setVisible(false);
+                        aloitusnappi4.setVisible(false);
                         vuoroteksti.setText("");
                         aloita(3);
                     }
@@ -261,8 +262,23 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
                         aloitusnappi2.setVisible(false);
                         aloitusnappi.setVisible(false);
                         aloitusnappi3.setVisible(false);
+                        aloitusnappi4.setVisible(false);
                         vuoroteksti.setText("");
                         aloita(2);
+                    }
+                }
+        );
+        aloitusnappi4.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae
+                    ) {
+                        aloitusnappi2.setVisible(false);
+                        aloitusnappi.setVisible(false);
+                        aloitusnappi3.setVisible(false);
+                        aloitusnappi4.setVisible(false);
+                        vuoroteksti.setText("");
+                        aloita(4);
                     }
                 }
         );
@@ -290,6 +306,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         kayttis.add(aloitusnappi);
         kayttis.add(aloitusnappi2);
         kayttis.add(aloitusnappi3);
+        kayttis.add(aloitusnappi4);
         ruutu.add(esitys);
         ruutu.add(kayttis);
         pohja.add(ruutu);
@@ -301,7 +318,7 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
 
     private void alustaTervehdysteksti() {
         String apu = "Tervetuloa pelaamaan Mecharallia.\n\n";
-        apu += "Ohjaat sinistä mecha-robottia.\n";
+        apu += "Ohjaat vaaleanpunaista mecha-robottia.\n";
         apu += "Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n";
         apu += "Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n\n";
         apu += "    Hauskaa hurjastelua!\n";

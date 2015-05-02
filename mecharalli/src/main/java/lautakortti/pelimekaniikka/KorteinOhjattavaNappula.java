@@ -26,7 +26,7 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         this.kaikkiTarjollaOlevatSiirrot.add(5); //jokerit
         this.kaikkiTarjollaOlevatSiirrot.add(5);
         this.konkreettinenSiirtopakka = new ArrayList<Integer>();
-                this.konkreettinenSiirtopakka.addAll(this.kaikkiTarjollaOlevatSiirrot);
+        this.konkreettinenSiirtopakka.addAll(this.kaikkiTarjollaOlevatSiirrot);
         Collections.shuffle(this.konkreettinenSiirtopakka);
     }
 
@@ -78,7 +78,7 @@ public class KorteinOhjattavaNappula implements Liikkuva {
      */
     public int mikaKuva() {
         if (this.hiparit < 3) {
-            return 1; //Tähän vahingoittuneen mechan kuva, jahka kehitän sen. XX
+            return -1;
         }
         return 1;       //Ehjö mecha.
     }
@@ -145,8 +145,8 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         Collections.shuffle(this.konkreettinenSiirtopakka);
     }
 
-    public void nollaaSiirrot(){
+    public void nollaaSiirrot() {
         this.seuraavaSiirto.clear();
     }
-    
+
 }

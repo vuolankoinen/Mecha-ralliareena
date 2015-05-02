@@ -36,9 +36,16 @@ public class HajoavaEsteTest {
 
     @Test
     public void esteEiMeneHetiRikkiHiukanKolaroidessa() {
-        HajoavaEste este = new HajoavaEste(1, 1);
+        HajoavaEste este = new HajoavaEste(1, 1, 7);
         este.vahingoittaakoKolaroidessa(2);
         assertEquals(false, este.onkoRikki());
+    }
+
+    @Test
+    public void toisellaKonstruktorillaMeneeRikkiHiukanKolaroidessa() {
+        HajoavaEste este = new HajoavaEste(1, 1);
+        este.vahingoittaakoKolaroidessa(2);
+        assertEquals(true, este.onkoRikki());
     }
 
     @Test
@@ -47,12 +54,31 @@ public class HajoavaEsteTest {
         este.vahingoittaakoKolaroidessa(10);
         assertEquals(true, este.onkoRikki());
     }
+
     @Test
     public void negatiivinenKolarointiEiKorjaa() {
         HajoavaEste este = new HajoavaEste(1, 1);
         este.vahingoittaakoKolaroidessa(4);
         este.vahingoittaakoKolaroidessa(-5);
         assertEquals(true, este.onkoRikki());
+    }
+
+    @Test
+    public void palauttaaSijainninJaKuvan() {
+        HajoavaEste este = new HajoavaEste(1, 1, 7);
+        assertEquals(9, este.mikaKuva() + este.sijaintiPystysuunnassa() + este.sijaintiSivusuunnassa());
+    }
+
+    @Test
+    public void vahingoittavaVahingoittaa() {
+        HajoavaEste este = new HajoavaEste(1, 1, 7, true, 10);
+        assertEquals(true, este.vahingoittaakoKolaroidessa(1));
+    }
+
+    @Test
+    public void pehmoEiVahingoita() {
+        HajoavaEste este = new HajoavaEste(1, 1, 7, false, 10);
+        assertEquals(false, este.vahingoittaakoKolaroidessa(1));
     }
 
 }

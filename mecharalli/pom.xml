@@ -43,11 +43,9 @@
                 <configuration>
                     <targetClasses>
                         <param>lautakortti.pelimekaniikka.*</param>
-                        <param>lautakortti.pelitapahtumienGrafiikka.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>lautakortti.pelimekaniikka.*</param>
-                        <param>lautakortti.pelitapahtumienGrafiikka.*</param>
                     </targetTests>
                 </configuration>
             </plugin>
