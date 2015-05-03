@@ -2,14 +2,23 @@ package lautakortti.pelimekaniikka;
 
 import java.util.Random;
 
+/**
+ * Laudan elementti, jonka "liikkeet" lyövät, mutta eivät liikuta.
+ *
+ */
 public class LiikkumatonTuuppivaVastustaja implements Liikkuva {
 
-//Laudan elementti, jonka "liikkeet" lyövät, mutta eivät liikuta.
     private int x;
     private int y;
     private Random arpa;
     private int hiparit;
 
+    /**
+     * Konstruktori.
+     *
+     * @param aloitusX x-koordinaatti
+     * @param aloitusY y-koordinaatti
+     */
     public LiikkumatonTuuppivaVastustaja(int aloitusX, int aloitusY) {
         this.x = aloitusX;
         this.y = aloitusY;
@@ -25,6 +34,11 @@ public class LiikkumatonTuuppivaVastustaja implements Liikkuva {
         return this.y;
     }
 
+    /**
+     * Palauttaa olion kuvan lukukoodin.
+     *
+     * @return kuvan koodi eli 4
+     */
     public int mikaKuva() {
         return 4;
     }
@@ -61,6 +75,11 @@ public class LiikkumatonTuuppivaVastustaja implements Liikkuva {
         return false;
     }
 
+    /**
+     * Kertoo, onvatko tornin kestopisteet lopussa.
+     *
+     * @return true, jos kestopisteet ovat loppuneet, muuten false
+     */
     public boolean onkoRikki() {
         if (this.hiparit < 1) {
             return true;

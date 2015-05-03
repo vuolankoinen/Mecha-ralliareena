@@ -12,19 +12,24 @@ import javax.swing.WindowConstants;
 import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
 import lautakortti.pelitapahtumienGrafiikka.Piirrustava;
 
+/**
+ * Swing-componentti, joka osaa piirtää pelilaudan pelilauta-olion sille
+ * välittämien tietojen pohjalta.
+ */
 public class Kuvaesitys extends JPanel implements Piirrustava {
 
     private ArrayList<Kuvastuva> kuvastuvat;
     private int ruudunKoko;     //Piirrettävän pelilaudan ruudun sivu pikseleinä.
     private int ruutujaPystysuoraan;
     private int ruutujaVaakasuoraan;
-//    private Image nappula;
 
+    /**
+     * Konstruktori.
+     */
     public Kuvaesitys() {
         this.kuvastuvat = new ArrayList<Kuvastuva>();
         setPreferredSize(new Dimension(500, 500));
         super.setBackground(Color.LIGHT_GRAY);
-        //      this.nappula = new ImageIcon("nappula.png").getImage();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
     @Override
     public void paintComponent(Graphics graffat) {
         super.paintComponent(graffat);
-        graffat.drawRect(1, 1, 498, 498); //laudan neliönmuotoiset reunat
+        graffat.drawRect(1, 1, 498, 498); //laudan suorakaiteenmuotoiset reunat
         for (Kuvastuva kuva : this.kuvastuvat) {
             if (kuva.mikaKuva() == 2) {
                 graffat.drawRect((kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko, (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko, this.ruudunKoko, this.ruudunKoko);
@@ -84,9 +89,8 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         pallo(mecha, graffat, 37, 47, 4);
     }
 
-    private void piirraLaatikko(Kuvastuva loota, Graphics graffat) {
+    private void piirraLaatikko(Kuvastuva loota, Graphics graffat) { //Piirtää puulaatikon.
         graffat.setColor(Color.ORANGE);
-//        graffat.fillRect((loota.sijaintiSivusuunnassa() - 1) * this.ruudunKoko, (loota.sijaintiPystysuunnassa() - 1) * this.ruudunKoko, this.ruudunKoko, this.ruudunKoko);
         suorakaide(loota, graffat, 10, 10, 80, 80);
         graffat.setColor(Color.BLACK);
         graffat.drawRect((loota.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + this.ruudunKoko / 10, (loota.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + this.ruudunKoko / 10, 4 * this.ruudunKoko / 5, 4 * this.ruudunKoko / 5);
@@ -97,7 +101,7 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         viiva(loota, graffat, 70, 20, 70, 80);
     }
 
-    private void piirraTeslatorni(Kuvastuva kuva, Graphics graffat) {
+    private void piirraTeslatorni(Kuvastuva kuva, Graphics graffat) {   //Piirtää nyrkkitornin.
         graffat.setColor(Color.BLACK);
         suorakaide(kuva, graffat, 40, 30, 20, 65);
         graffat.setColor(Color.blue);
@@ -137,7 +141,7 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         suorakaide(kuva, graffat, 25, 35, 10, 20);
     }
 
-    private void piirraHalkeamia(Kuvastuva kuva, Graphics graffat) {
+    private void piirraHalkeamia(Kuvastuva kuva, Graphics graffat) {  //Koristelee vahingoittuneen mechan.
         graffat.setColor(Color.black);
         viiva(kuva, graffat, 60, 60, 70, 50);
         viiva(kuva, graffat, 70, 50, 75, 45);
@@ -159,7 +163,7 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
     }
 
     /**
-     * Piirtää suorakaiteen laudan ruudun sisälle.
+     * Piirtää viivan laudan ruudun sisälle.
      *
      * @param kuva
      * @param graffat
@@ -172,6 +176,15 @@ public class Kuvaesitys extends JPanel implements Piirrustava {
         graffat.drawLine((kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + alkuX * this.ruudunKoko / 100, (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + alkuY * this.ruudunKoko / 100, (kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + loppuX * this.ruudunKoko / 100, (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + loppuY * this.ruudunKoko / 100);
     }
 
+    /**
+     * Piirtää ympyrän pelilaudan ruudun sisälle.
+     *
+     * @param kuva
+     * @param graffat
+     * @param x
+     * @param y
+     * @param r
+     */
     private void pallo(Kuvastuva kuva, Graphics graffat, int x, int y, int r) {
         graffat.fillOval((kuva.sijaintiSivusuunnassa() - 1) * this.ruudunKoko + (x * this.ruudunKoko / 100), (kuva.sijaintiPystysuunnassa() - 1) * this.ruudunKoko + (y * this.ruudunKoko / 100), r * this.ruudunKoko / 100, r * this.ruudunKoko / 100);
     }

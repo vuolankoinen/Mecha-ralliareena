@@ -3,10 +3,13 @@ package lautakortti.pelimekaniikka;
 import lautakortti.pelitapahtumienGrafiikka.Piirrustava;
 import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-//Pelilauta, jolla pelatessa voittoehtona on päästä tiettyyn laudan ruutuun.
+/**
+ * Pelilauta, jolla pelatessa voittoehtona on päästä tiettyyn laudan ruutuun.
+ *
+ * @author Matti Palomäki
+ */
 public class Esterata implements Pelilauta {
 
     private Piirrustava piirrin;
@@ -19,6 +22,13 @@ public class Esterata implements Pelilauta {
     private int maaliY;
     private String vuororaportti;
 
+    /**
+     * Luo pelilaudan parametrin mukaan.
+     *
+     * @param tyyppi Halutun laudan kokonaislukutunnus.
+     * @param piirrin Piirrustava-rajapinnan toteuttava olio, joka visualisoi
+     * pelilaudan tapahtumat.
+     */
     public Esterata(int tyyppi, Piirrustava piirrin) {
         this.piirrin = piirrin;
         if (tyyppi == 1) {      //Erilaisia lautoja voi lisätä eri parametreille.
@@ -134,10 +144,10 @@ public class Esterata implements Pelilauta {
         }
     }
 
-    public Esterata(Piirrustava piirrin) {
-        this(1, piirrin);
-    }
-
+    /**
+     * Välittää piirtopyynnön laudan piirtimelle. Tällä laudalla pyynnön mukaan
+     * liitetään maaliruudun sijainti.
+     */
     public void piirra() {
         ArrayList<Kuvastuva> kuvastuvatJaMaali = new ArrayList<Kuvastuva>();
         kuvastuvatJaMaali.addAll(laudanOliot);
@@ -166,6 +176,10 @@ public class Esterata implements Pelilauta {
         return vuororaportti();
     }
 
+    /**
+     * Käy läpi laudan oliot, kysyy niiltä ovatko ne rikkoutuneet, ja poistaa
+     * rikkinäiset.
+     */
     public void siivoaRikkoutuneetLaudalta() {
         ArrayList<Kuvastuva> kopio = new ArrayList<Kuvastuva>();
         kopio.addAll(this.laudanOliot);
@@ -218,6 +232,10 @@ public class Esterata implements Pelilauta {
         }
     }
 
+    /**
+     * Välittää pelaajanappulalle pyynnön tyhjentää sille välitetyt siirrot
+     * muistista.
+     */
     public void nollaaSiirrot() {
         this.pelaaja.nollaaSiirrot();
     }
@@ -247,9 +265,6 @@ public class Esterata implements Pelilauta {
      * @param uhri Kolarin liikkumaton osapuoli, Kuvastuva olio.
      */
     public void kolaroi(Kuvastuva liikkuva, Kuvastuva uhri) {
-        //if (uhri == null) {    //En tajua, mistä tämä null-pointeri tulee. :(
-        //    return;         //Pitää selvittää, niin pääsee tästä hätäratkaisusta.
-        //}
         boolean onkoKova = uhri.vahingoittaakoKolaroidessa(2);
         if (onkoKova) {
             liikkuva.vahingoittaakoKolaroidessa(1);
@@ -299,7 +314,7 @@ public class Esterata implements Pelilauta {
     /**
      * Asettaa pelaajanappulan seuraavan siirron pelaajan syötteen perusteella.
      *
-     * @param siirto Pelaajan syöte, toivottavasti jokin merkeistä awsz.
+     * @param siirto Asetettavan siirron kirjainkoodi Stringinä.
      */
     public void asetaSiirto(String siirto) {
         if (siirto.equals("w")) {
@@ -336,10 +351,21 @@ public class Esterata implements Pelilauta {
         }
     }
 
+    /**
+     * getteri
+     *
+     * @return vuororaportti
+     */
     public String vuororaportti() {
         return this.vuororaportti;
     }
 
+    /**
+     * Välittää pelaajanappulalta seuraavat viisi siirtovaihtoehtoa.
+     *
+     * @return Laudan pelaajanappulan viiden seuraavan siirron
+     * kokonaislukukoodit ArrayListinä.
+     */
     public ArrayList<Integer> seuraavatViisiVaihtoehtoa() {
         return this.pelaaja.seuraavatViisiVaihtoehtoa();
     }

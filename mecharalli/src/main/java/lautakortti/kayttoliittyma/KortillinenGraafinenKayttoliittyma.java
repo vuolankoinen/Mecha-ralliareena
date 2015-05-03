@@ -11,6 +11,14 @@ import lautakortti.pelimekaniikka.Esterata;
 import lautakortti.pelimekaniikka.Pelilauta;
 import lautakortti.pelitapahtumienGrafiikka.Kuvaesitys;
 
+/**
+ * Graafinen käyttöliittymä.
+ * <p>
+ * Luo pyydetyn pelilaudan ja sitten toimii yhteyskohtana pelaajan ja pelilaudan
+ * välillä.
+ *
+ * @author Matti Palomäki
+ */
 public class KortillinenGraafinenKayttoliittyma implements Runnable {
 
     private JFrame pohja;   //kaikki muu tulee tähän
@@ -84,6 +92,11 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         this.uudetSiirrot();
     }
 
+    /**
+     * Lisää valintapainikkeisiin omat kuuntelijat. Kuuntelija kasvattaa
+     * kierroksen etenemistä mittaavaa laskuria ja asettaa valitun siirron
+     * pelaajanappulalle.
+     */
     private void valintapainikkeisiinKuuntelijat() {
         eka.addActionListener(new ActionListener() {
             @Override
@@ -191,8 +204,8 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
      * Luo uuden pelilaudan.
      *
      * @param laji Parametri kertoo, minkälainen lauta luodaan. 1 = 4x4
-     * alkeellinen pelilauta 2 = 7*7 vaikeahko pelilauta
-     * @return
+     * pelilauta, 2 = 7x7 pelilauta, 3 = 8x8, 4 = 12x12 satunnaisgeneroitu lauta
+     * @return Palauttaa luodun laudan.
      */
     public Pelilauta alustaLauta(int laji) { //Luo pyydetynlaisen pelilaudan.
         if (laji < 5 && laji > 0) {
@@ -284,24 +297,18 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         );
 
         this.nappi = new JButton();
-
-        alustaNappi(
-                false, "Selvä.");
+        alustaNappi(false, "Selvä.");
         kayttis.add(nappi);
-
         nappi.addActionListener(
                 new ActionListener() {
-
                     @Override
                     public void actionPerformed(ActionEvent ae
                     ) {
                         nappi.setVisible(false);
                         jatkaSiirtoja();
                     }
-
                 }
         );
-
         kayttis.add(vuoroteksti);
         kayttis.add(aloitusnappi);
         kayttis.add(aloitusnappi2);
@@ -316,8 +323,12 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         pohja.pack();
     }
 
+    /**
+     * Alustaa käyttiksen tekstikentän ja asettaa sen ensimmäiseksi arvoksi
+     * tervetulotekstin.
+     */
     private void alustaTervehdysteksti() {
-        String apu = "Tervetuloa pelaamaan Mecharallia.\n\n";
+        String apu = "      Tervetuloa pelaamaan Mecharallia.\n\n";
         apu += "Ohjaat vaaleanpunaista mecha-robottia.\n";
         apu += "Valitse aina kerrallaan kolme \nseuraavaa siirtoasi napsauttamalla niitä.\n";
         apu += "Tavoitteenasi on päästä vaaleanpunaiseen maaliin.\n\n";
@@ -350,7 +361,8 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
     }
 
     /**
-     * Alustaa viisi valintapainiketta uusilla siirroilla.
+     * Alustaa viisi siirronvalintapainiketta uusilla siirroilla pelaajanappulan
+     * pakasta.
      */
     private void uudetSiirrot() {
         kierrosvaihe = -1;
@@ -363,6 +375,10 @@ public class KortillinenGraafinenKayttoliittyma implements Runnable {
         this.komennot.setVisible(true);
     }
 
+    /**
+     * nollaa-nappi tuo tänne. Poistaa tehdyt siirtovalinnat ja ottaa
+     * valintapainikkeet taas käyttöön.
+     */
     private void nollaaSiirrot() {
         this.eka.setEnabled(true);
         this.toka.setEnabled(true);

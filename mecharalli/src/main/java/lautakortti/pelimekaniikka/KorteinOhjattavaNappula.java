@@ -3,6 +3,9 @@ package lautakortti.pelimekaniikka;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Pelaajan nappula, jota ohjataan sen siirtovaihtoehtopakan avulla.
+ */
 public class KorteinOhjattavaNappula implements Liikkuva {
 
     private int x;
@@ -12,6 +15,13 @@ public class KorteinOhjattavaNappula implements Liikkuva {
     private ArrayList<Integer> konkreettinenSiirtopakka;
     private int hiparit;
 
+    /**
+     * Konstruktori.
+     *
+     * @param alkusijaintiX x-koordinaatti
+     * @param alkusijaintiY y-koordinaatti
+     * @param alkuHP Montako kestopistettä nappulalla on aluksi.
+     */
     KorteinOhjattavaNappula(int alkusijaintiX, int alkusijaintiY, int alkuHP) {
         this.x = alkusijaintiX;
         this.y = alkusijaintiY;
@@ -30,15 +40,18 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         Collections.shuffle(this.konkreettinenSiirtopakka);
     }
 
+    /**
+     * Kuormittaa konstruktoria.
+     *
+     * @param alkusijaintiX
+     * @param alkusijaintiY
+     */
     KorteinOhjattavaNappula(int alkusijaintiX, int alkusijaintiY) {
         this(alkusijaintiX, alkusijaintiY, 4);
     }
 
-    KorteinOhjattavaNappula() {
-        this(1, 1, 4);
-    }
-
     /**
+     * Kertoo seuraavan siirron ja poistaa sen seuraavien siirtojen listasta.
      *
      * @return Nappulan seuraavaa siirtoa vastaava kokonaisluku.
      */
@@ -51,19 +64,35 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         return siirto;
     }
 
+    /**
+     * getteri
+     *
+     * @return x-koordinaatti
+     */
     public int sijaintiSivusuunnassa() {
         return this.x;
     }
 
+    /**
+     * getteri
+     *
+     * @return y-koordinaatti
+     */
     public int sijaintiPystysuunnassa() {
         return this.y;
     }
 
+    /**
+     * getteri
+     *
+     * @return kestopisteet
+     */
     public int hiparit() {
         return this.hiparit;
     }
 
     /**
+     * Lisää parametrin seuraavien siirtojen listaan.
      *
      * @param siirto Nappulan seuraavan siirron kertova koodi
      */
@@ -72,15 +101,16 @@ public class KorteinOhjattavaNappula implements Liikkuva {
     }
 
     /**
+     * Palauttaa pelaajanappulan kuvan lukukoodin.
      *
      * @return Pelaajalle näytettävässä tulosteessa elementtiä vastaavan
      * kuvauksen lukukoodi.
      */
     public int mikaKuva() {
         if (this.hiparit < 3) {
-            return -1;
+            return -1;  //Vahingoittunut mecha.
         }
-        return 1;       //Ehjö mecha.
+        return 1;       //Ehjä mecha.
     }
 
     /**
@@ -101,12 +131,23 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         }
     }
 
+    /**
+     * Vähentää kestopisteitä parametrin verran.
+     *
+     * @param paljon Kuinka paljon kestopisteitä vähennetään.
+     * @return palauttaa true: törmääjä vahingoittuu
+     */
     public boolean vahingoittaakoKolaroidessa(int paljon) {
         paljon = Math.max(paljon, 0);
         this.hiparit -= paljon;     //Kolaroidessa nappula vahingoittuu.
         return true;                //Samoin kolaroija.
     }
 
+    /**
+     * Kertoo, onko nappulan kestopisteet tippuneet nollaan tai alle.
+     *
+     * @return true, jos kestopisteet lopussa, muuten false
+     */
     public boolean onkoRikki() {
         if (this.hiparit < 1) {
             return true;
@@ -145,6 +186,9 @@ public class KorteinOhjattavaNappula implements Liikkuva {
         Collections.shuffle(this.konkreettinenSiirtopakka);
     }
 
+    /**
+     * Tyhjentää seuraavien siirtojen listan.
+     */
     public void nollaaSiirrot() {
         this.seuraavaSiirto.clear();
     }

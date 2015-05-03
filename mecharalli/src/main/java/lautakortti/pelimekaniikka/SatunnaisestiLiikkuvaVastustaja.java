@@ -2,14 +2,22 @@ package lautakortti.pelimekaniikka;
 
 import java.util.Random;
 
+/**
+ * Laudan liikkuva elementti, jonka liikkeet ovat satunnaisia.
+ */
 public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
 
-//Laudan liikkuva elementti, jonka liikkeet ovat satunnaisia.
     private int x;
     private int y;
     private Random arpa;
     private int hiparit;
 
+    /**
+     * Konstruktori.
+     *
+     * @param aloitusX x-koordinaatti
+     * @param aloitusY y-koordinaatti
+     */
     public SatunnaisestiLiikkuvaVastustaja(int aloitusX, int aloitusY) {
         this.x = aloitusX;
         this.y = aloitusY;
@@ -25,6 +33,11 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
         return this.y;
     }
 
+    /**
+     * Palauttaa olion kuva lukukoodin.
+     *
+     * @return olion kuvan koodi, eli 3
+     */
     public int mikaKuva() {
         return 3;
     }
@@ -50,7 +63,7 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
         if ((this.x + vaakasuoraMuutosSijainnissa) < maxX && 0 < (this.x + vaakasuoraMuutosSijainnissa)) {
             this.x += vaakasuoraMuutosSijainnissa;
         }
-        if ((this.y + pystysuoraMuutosSijainnissa)< maxY && (this.y + pystysuoraMuutosSijainnissa)>0) {     //Samoin tähän.
+        if ((this.y + pystysuoraMuutosSijainnissa) < maxY && (this.y + pystysuoraMuutosSijainnissa) > 0) {     //Samoin tähän.
             this.y += pystysuoraMuutosSijainnissa;
         }
     }
@@ -67,6 +80,11 @@ public class SatunnaisestiLiikkuvaVastustaja implements Liikkuva {
         return true;
     }
 
+    /**
+     * Tarkistaa, ovatko kestopisteet nollassa tai alle.
+     *
+     * @return true, jos kestopisteet lopussa, muuten false
+     */
     public boolean onkoRikki() {
         if (this.hiparit < 1) {
             return true;

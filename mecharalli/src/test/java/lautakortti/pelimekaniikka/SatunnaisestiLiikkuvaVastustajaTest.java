@@ -44,7 +44,7 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
     public void siirrotOvatSatunnaisia() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 1);
         int tulisiPoiketaNollasta = 0;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 18; i++) {
             tulisiPoiketaNollasta += vastus.kerroSeuraavaSiirto();
             tulisiPoiketaNollasta -= vastus.kerroSeuraavaSiirto();
         }
@@ -55,7 +55,7 @@ public class SatunnaisestiLiikkuvaVastustajaTest {
     public void siirrotOvatSatunnaisia2() {
         SatunnaisestiLiikkuvaVastustaja vastus = new SatunnaisestiLiikkuvaVastustaja(1, 1);
         int eiSaisiPoiketaLiikaaNollasta = 0;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 18; i++) {
             eiSaisiPoiketaLiikaaNollasta += vastus.kerroSeuraavaSiirto();
             eiSaisiPoiketaLiikaaNollasta -= vastus.kerroSeuraavaSiirto();
         }

@@ -167,7 +167,7 @@ public class EsterataTest {
         lauta.asetaSiirto("s");
         lauta.nollaaSiirrot();
         lauta.teeSiirrot();
-        assertEquals(1, lauta.tarkistaKolarointi(1, 1).mikaKuva());
+        assertEquals(1, lauta.tarkistaKolarointi(1, 1).mikaKuva()*lauta.tarkistaKolarointi(1, 1).mikaKuva());
     }
 
     @Test

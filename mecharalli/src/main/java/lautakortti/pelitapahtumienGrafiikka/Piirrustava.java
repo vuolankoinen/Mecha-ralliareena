@@ -2,9 +2,11 @@ package lautakortti.pelitapahtumienGrafiikka;
 
 import java.util.List;
 
+/**
+ * Rajapinnan toteuttavien luokkien oliot osaavat piirtää pelilaudan.
+ */
 public interface Piirrustava {
-//Rajapinnan toteuttavien luokkien oliot osaavat piirtää pelilaudan.
 
-    abstract void piirra(int laudanLeveys, int laudanKorkeus, List<Kuvastuva> laudanElementit); 
-    
+    abstract void piirra(int laudanLeveys, int laudanKorkeus, List<Kuvastuva> laudanElementit);
+
 }
