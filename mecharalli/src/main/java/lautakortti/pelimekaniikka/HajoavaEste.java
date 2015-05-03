@@ -1,6 +1,6 @@
 package lautakortti.pelimekaniikka;
 
-import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
+import lautakortti.grafiikka.Kuvastuva;
 
 /**
  * Pelilaudan elementti, joka ei liiku mutta vahingoittuu jos siihen

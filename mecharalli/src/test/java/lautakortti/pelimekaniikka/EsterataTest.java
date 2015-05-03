@@ -1,6 +1,6 @@
 package lautakortti.pelimekaniikka;
 
-import lautakortti.pelitapahtumienGrafiikka.Kuvaesitys;
+import lautakortti.grafiikka.Kuvaesitys;
 import lautakortti.pelimekaniikka.LiikkumatonEste;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -37,8 +37,8 @@ public class EsterataTest {
 
     @Test
     public void lautaTunnistaaVoittoehdot2() {
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
         lauta.asetaSiirto("s");
         lauta.teeSiirrot();
         lauta.asetaSiirto("s");
@@ -189,8 +189,8 @@ public class EsterataTest {
 
     @Test
     public void nappulaLiikkuu2() {
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
         lauta.asetaSiirto("s");
         lauta.teeSiirrot();
         lauta.asetaSiirto("s");
@@ -206,8 +206,8 @@ public class EsterataTest {
 
     @Test
     public void nappulaLiikkuu3() {
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
-        lauta.kolaroi(lauta.tarkistaKolarointi(1, 1), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
+        lauta.kolaroi(lauta.tarkistaKolarointi(1, 2), lauta.tarkistaKolarointi(1, 2));
         lauta.asetaSiirto("s");
         lauta.teeSiirrot();
         lauta.asetaSiirto("w");
@@ -216,7 +216,7 @@ public class EsterataTest {
         lauta.teeSiirrot();
         lauta.asetaSiirto("a");
         lauta.teeSiirrot();
-        assertEquals(-1, lauta.tarkistaKolarointi(1, 1).mikaKuva());
+        assertEquals(1, lauta.tarkistaKolarointi(1, 1).mikaKuva()*lauta.tarkistaKolarointi(1, 1).mikaKuva());
     }
 
     @Test

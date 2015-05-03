@@ -1,6 +1,6 @@
 package lautakortti.pelimekaniikka;
 
-import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
+import lautakortti.grafiikka.Kuvastuva;
 
 /**
  * Rajapinta, jonka toteuttavat pelilaudan oliot osaavat kertoa, mihin ne

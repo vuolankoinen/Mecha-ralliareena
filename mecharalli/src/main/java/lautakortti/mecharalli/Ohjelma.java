@@ -12,7 +12,7 @@ public class Ohjelma {
 
     public static void main(String[] args) {
 
-        KortillinenGraafinenKayttoliittyma kayttis = new KortillinenGraafinenKayttoliittyma();
+        Kayttoliittyma kayttis = new Kayttoliittyma();
         SwingUtilities.invokeLater(kayttis);
     }
 }

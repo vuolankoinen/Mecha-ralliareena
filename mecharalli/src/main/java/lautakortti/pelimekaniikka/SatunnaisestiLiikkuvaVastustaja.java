@@ -1,6 +1,7 @@
 package lautakortti.pelimekaniikka;
 
 import java.util.Random;
+import lautakortti.pelimekaniikka.Liikkuva;
 
 /**
  * Laudan liikkuva elementti, jonka liikkeet ovat satunnaisia.

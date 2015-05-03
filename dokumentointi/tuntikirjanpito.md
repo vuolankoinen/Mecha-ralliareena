@@ -20,5 +20,5 @@
 		Jokeri-ohjauskortti.
 30.4.	5t	Ulkoasun parantelua,
 		testejä kattavemmiksi.
-3.5.	3t	Dokumentaatio ajan tasalle,
+3.5.	6t	Dokumentaatio ajan tasalle,
 		viimeisiä viilauksia.

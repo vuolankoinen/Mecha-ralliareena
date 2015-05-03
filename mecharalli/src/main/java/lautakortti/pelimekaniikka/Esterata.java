@@ -1,7 +1,7 @@
 package lautakortti.pelimekaniikka;
 
-import lautakortti.pelitapahtumienGrafiikka.Piirrustava;
-import lautakortti.pelitapahtumienGrafiikka.Kuvastuva;
+import lautakortti.grafiikka.Piirrustava;
+import lautakortti.grafiikka.Kuvastuva;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,7 +15,7 @@ public class Esterata implements Pelilauta {
     private Piirrustava piirrin;
     private int leveys;
     private int korkeus;
-    private KorteinOhjattavaNappula pelaaja;
+    private Pelaajanappula pelaaja;
     private ArrayList<Kuvastuva> laudanOliot;
     private ArrayList<Liikkuva> laudanLiikkuvatOliot;
     private int maaliX;
@@ -40,7 +40,7 @@ public class Esterata implements Pelilauta {
         } else {
             luoLauta2();
         }
-        KorteinOhjattavaNappula pelaajanappula = new KorteinOhjattavaNappula(1, 1);
+        Pelaajanappula pelaajanappula = new Pelaajanappula(1, 1);
         this.laudanLiikkuvatOliot.add(pelaajanappula);
         this.pelaaja = pelaajanappula;
         this.laudanOliot.addAll(this.laudanLiikkuvatOliot);

@@ -8,3 +8,5 @@ Jännitystä ja haastetta peliin tuovat pelaajan kontrollin ulkopuolelle jääv�
 
 **Käyttäjä:** Peliä käyttää ihminen, joka haluaa hetkeksi unohtaa kurjan maailman ja rutata metallia robottikisoissa. 
 Käyttäjä valitsee yhden tarjolla olevista pelilaudoista ja sitten ohjailee käyttöliittymän kautta pelaajan kontrollissa olevia pelilaudan elementtejä, pyrkien omaksi ilokseen voittamaan pelin tarjoamat haasteet.
+
+Käyttäjän mahdolliset käyttötapaukset muistuttavat toisiaan. Ohjelman käynnistyttyä hän valitsee aluksi pelattavan pelilaudan tyypin. Ohjelma luo pyydetyn pelilaudan ja sen jälkeen käyttäjä pelaa valitsemallaan laudalla, kunnes voittaa, häviää tai keskeyttää ohjelman suorituksen.
